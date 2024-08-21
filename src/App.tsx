@@ -9,7 +9,7 @@ import AboutPage from "@/pages/about";
 function App() {
   return (
     <Routes>
-      <Route element={<IndexPage />} path="/bookquest" />
+      <Route element={<IndexPage />} path="/frontend/" />
       <Route element={<DocsPage />} path="/docs" />
       <Route element={<PricingPage />} path="/pricing" />
       <Route element={<BlogPage />} path="/blog" />

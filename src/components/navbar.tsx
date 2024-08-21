@@ -48,7 +48,7 @@ export const Navbar = () => {
           <Link
             className="flex justify-start items-center gap-1"
             color="foreground"
-            href="/bookquest"
+            href="/frontend/"
           >
             <Logo />
             <p className="font-bold text-inherit">Bookquest</p>
