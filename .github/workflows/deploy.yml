@@ -5,6 +5,23 @@ on:
       - main
   workflow_dispatch:
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.7
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+      - name: install Nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Run lint
+        run: pnpm run lint
+
   test:
     runs-on: ubuntu-latest
     steps:
