@@ -14,21 +14,36 @@ This is a template for creating applications using Vite and NextUI (v2).
 - [Framer Motion](https://www.framer.com/motion)
 
 ## How to Use
-This repository uses nvm to manage the node version. If you don't have nvm installed, you can install it by following the instructions on the [official website](https://github.com/nvm-sh/nvm).
 
+This repository uses nvm to manage the node version. If you don't have nvm installed, you can install it by following
+the instructions on the [official website](https://github.com/nvm-sh/nvm).
 
+### Package Manager
 
-### Install dependencies
-We uses `pnpm` as the package manager. You can use `corepack` to install `pnpm`. It will automatically install `pnpm` and use the correct version of `pnpm` for the project.
+This repository uses `pnpm` as the package manager. You can use `corepack` to install `pnpm`. It will automatically
+install `pnpm` and use the correct version of `pnpm` for the project.
 
 ```bash
 corepack enable
 ```
 
+### Install dependencies
+Before running the development server, you need to install the dependencies.
+
+```bash
+pnpm install
+```
+
 ### Run the development server
 
 ```bash
-npm run dev
+pnpm run dev
+```
+
+### Run tests
+    
+```bash
+pnpm run test
 ```
 
 ### Setup pnpm (optional)
@@ -39,7 +54,8 @@ If you are using `pnpm`, you need to add the following code to your `.npmrc` fil
 public-hoist-pattern[]=*@nextui-org/*
 ```
 
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
+After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed
+correctly.
 
 ## License
 
