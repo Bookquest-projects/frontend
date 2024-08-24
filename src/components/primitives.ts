@@ -58,6 +58,7 @@ export const grid = tv({
     gap: {
       4: "gap-4",
       8: "gap-8",
+      16: "gap-16",
     },
     cols: {
       1: "grid-cols-1",

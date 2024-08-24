@@ -65,7 +65,7 @@ export default function IndexPage() {
               "Quickly scan the barcode of any book by using your phone's camera"
             }
             featureTitle={"Scan"}
-            image="https://img.freepik.com/premium-vector/scan-barcode-with-phone-flat-design_601298-3426.jpg"
+            image="https://t3.ftcdn.net/jpg/07/55/29/78/360_F_755297833_OZALjEEqDRQv3mmQRKCSArTk3RSWkHT2.jpg"
           />
 
           <FeatureWrapper
