@@ -27,7 +27,7 @@ export const FeatureWrapper: FC<Props> = ({
           })}
         >
           <h1 className={title()}>{featureTitle}</h1>
-          <p>{description}</p>
+          <p className={"text-center"}>{description}</p>
         </div>
       </>
     ) : (
@@ -40,7 +40,7 @@ export const FeatureWrapper: FC<Props> = ({
           })}
         >
           <h1 className={title()}>{featureTitle}</h1>
-          <p>{description}</p>
+          <p className={"text-center"}>{description}</p>
         </div>
         <Image alt={featureTitle} src={image} />
       </>
