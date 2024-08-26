@@ -15,10 +15,12 @@ export const FeatureWrapper: FC<Props> = ({
   image,
   reverse = false,
 }) => (
-  <div className={grid()}>
+  <div className={grid({ gap: 16 })}>
     {reverse ? (
       <>
-        <Image alt={featureTitle} src={image} />
+        <div className={"flex justify-center"}>
+          <Image alt={featureTitle} src={image} />
+        </div>
         <div
           className={flex({
             flexDirection: "column",
@@ -27,7 +29,7 @@ export const FeatureWrapper: FC<Props> = ({
           })}
         >
           <h1 className={title()}>{featureTitle}</h1>
-          <p>{description}</p>
+          <p className={"text-center"}>{description}</p>
         </div>
       </>
     ) : (
@@ -40,9 +42,11 @@ export const FeatureWrapper: FC<Props> = ({
           })}
         >
           <h1 className={title()}>{featureTitle}</h1>
-          <p>{description}</p>
+          <p className={"text-center"}>{description}</p>
         </div>
-        <Image alt={featureTitle} src={image} />
+        <div className={"flex justify-center"}>
+          <Image alt={featureTitle} src={image} />
+        </div>
       </>
     )}
   </div>
