@@ -1,4 +1,3 @@
-import { Link } from "@nextui-org/link";
 import { ReactNode } from "react";
 
 import { Navbar } from "@/components/navbar";
@@ -17,16 +16,9 @@ export default function DefaultLayout({ children }: { children: ReactNode }) {
 
       <footer className="w-full flex flex-col p-4 items-center justify-center">
         <div className={"flex items-center justify-center"}>
-          <Link
-            isExternal
-            className="flex items-center gap-1 text-current"
-            href="https://nextui-docs-v2.vercel.app?utm_source=next-pages-template"
-            title="nextui.org homepage"
-          >
-            <p className="text-default-400">
-              Copyright © 2024. All rights reserved.
-            </p>
-          </Link>
+          <p className="text-default-400">
+            Copyright © 2024. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>
