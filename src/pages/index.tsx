@@ -81,7 +81,7 @@ export default function IndexPage() {
               "Dive into your next read and begin your new adventure"
             }
             featureTitle={"Enjoy"}
-            image={"src/img/summer-gradient-reading-books-illustration.png"}
+            image={"public/summer-gradient-reading-books-illustration.png"}
           />
         </div>
       </section>
