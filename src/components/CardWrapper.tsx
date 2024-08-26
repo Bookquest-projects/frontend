@@ -12,11 +12,11 @@ export const CardWrapper: FC<Props> = ({ cardTitle, icon, body }) => (
     <CardHeader className="flex gap-4">
       {icon}
       <div className="flex flex-col">
-        <p>{cardTitle}</p>
+        <p className={"font-bold"}>{cardTitle}</p>
       </div>
     </CardHeader>
     <CardBody>
-      <p>{body}</p>
+      <p className="text-default-500">{body}</p>
     </CardBody>
   </Card>
 );
