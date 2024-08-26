@@ -73,7 +73,7 @@ export default function IndexPage() {
               "Not sure what to read next? Find new books with our recommendation engine"
             }
             featureTitle={"Discover"}
-            image="https://miro.medium.com/v2/resize:fit:1100/format:webp/0*ElMa2Z9RvpHFssam.png"
+            image="https://images.ctfassets.net/gc0d9ikt3p7m/3l36hjq8yYSkSqQyrqm4Af/bd635fb19aeda09b81bed9eb279388df/lucrative-genres-for-authors.png?w=2048&q=75&fm=jpg&fl=progressive"
             reverse={true}
           />
           <FeatureWrapper
@@ -81,7 +81,7 @@ export default function IndexPage() {
               "Dive into your next read and begin your new adventure"
             }
             featureTitle={"Enjoy"}
-            image="https://images.ctfassets.net/gc0d9ikt3p7m/3l36hjq8yYSkSqQyrqm4Af/bd635fb19aeda09b81bed9eb279388df/lucrative-genres-for-authors.png?w=2048&q=75&fm=jpg&fl=progressive"
+            image={"src/img/summer-gradient-reading-books-illustration.png"}
           />
         </div>
       </section>
