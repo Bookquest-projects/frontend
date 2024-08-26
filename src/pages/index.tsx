@@ -81,7 +81,7 @@ export default function IndexPage() {
               "Dive into your next read and begin your new adventure"
             }
             featureTitle={"Enjoy"}
-            image={"https://github.com/Bookquest-projects/frontend/blob/main/public/summer-gradient-reading-books-illustration.png"}
+            image={"https://img.freepik.com/free-vector/summer-gradient-reading-books-illustration_23-2149455695.jpg?t=st=1724677264~exp=1724680864~hmac=2794631eeea5ea10bf4a211bf49639c88923da383574ae08c9479b04ce095ee3&w=1060"}
           />
         </div>
       </section>
