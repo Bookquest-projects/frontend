@@ -11,5 +11,7 @@ vi.mock("react-router-dom", () => ({
 
 test("renders App component", () => {
   render(<App />);
-  expect(screen.getByText("Scan and Discover new books")).toBeDefined();
+  expect(
+    screen.getByText("Your Quest for the Perfect Book Begins Here"),
+  ).toBeDefined();
 });
