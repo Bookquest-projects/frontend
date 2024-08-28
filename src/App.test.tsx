@@ -7,6 +7,7 @@ vi.mock("react-router-dom", () => ({
   Route: ({ element }: { element: JSX.Element }) => element,
   Routes: ({ children }: { children: JSX.Element }) => children,
   Link: ({ children }: { children: string }) => <a href="/">{children}</a>,
+  useNavigate: () => vi.fn(),
 }));
 
 test("renders App component", () => {
