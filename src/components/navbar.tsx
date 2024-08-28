@@ -6,13 +6,10 @@ import {
   Navbar as NextUINavbar,
   NavbarBrand,
   NavbarContent,
-  NavbarItem,
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
 } from "@nextui-org/navbar";
-import { link as linkStyles } from "@nextui-org/theme";
-import clsx from "clsx";
 import { Tooltip } from "@nextui-org/react";
 
 import { siteConfig } from "@/config/site";
@@ -43,34 +40,18 @@ export const Navbar = () => {
   );
 
   return (
-    <NextUINavbar maxWidth="xl" position="sticky">
+    <NextUINavbar maxWidth="2xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-        <NavbarBrand className="gap-4 max-w-fit">
+        <NavbarBrand className="gap-4">
           <Link
             className="flex justify-start items-center gap-1"
             color="foreground"
-            href="/frontend/"
+            href="/bookquest"
           >
             <Logo />
             <p className="font-bold text-inherit">Bookquest</p>
           </Link>
         </NavbarBrand>
-        <div className="hidden lg:flex gap-4 justify-start ml-2">
-          {siteConfig.navItems.map((item) => (
-            <NavbarItem key={item.href}>
-              <Link
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium",
-                )}
-                color="foreground"
-                href={item.href}
-              >
-                {item.label}
-              </Link>
-            </NavbarItem>
-          ))}
-        </div>
       </NavbarContent>
 
       <NavbarContent className="basis-1 pl-4" justify="end">
@@ -92,8 +73,8 @@ export const Navbar = () => {
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
-                color={item.label === "Projects" ? "primary" : "foreground"}
-                href="#"
+                color={item.label === "Search" ? "primary" : "foreground"}
+                href={item.href}
                 size="lg"
               >
                 {item.label}
