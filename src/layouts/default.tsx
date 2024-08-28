@@ -2,15 +2,23 @@ import { ReactNode } from "react";
 
 import { Navbar } from "@/components/navbar";
 
-export default function DefaultLayout({ children }: { children: ReactNode }) {
+export default function DefaultLayout({
+  children,
+  gradient = false,
+}: {
+  children: ReactNode;
+  gradient?: boolean;
+}) {
   return (
     <div
       className={
-        "relative flex flex-col bg-[radial-gradient(circle_400px_at_90%_200px,#fdd94f,transparent)]"
+        gradient
+          ? "relative flex flex-col bg-[radial-gradient(circle_400px_at_90%_200px,#fdd94f,transparent)]"
+          : "relative flex flex-col"
       }
     >
       <Navbar />
-      <main className="container mx-auto max-w-7xl px-8 flex-grow py-24">
+      <main className="container mx-auto max-w-7xl px-8 flex-grow pb-24">
         {children}
       </main>
 
