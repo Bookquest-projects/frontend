@@ -18,7 +18,7 @@ export const FeatureWrapper: FC<Props> = ({
   <div className={grid({ gap: 16 })}>
     {reverse ? (
       <>
-        <div className={"flex justify-center"}>
+        <div className="flex justify-center">
           <Image alt={featureTitle} src={image} />
         </div>
         <div
@@ -29,7 +29,7 @@ export const FeatureWrapper: FC<Props> = ({
           })}
         >
           <h1 className={title()}>{featureTitle}</h1>
-          <p className={"text-center"}>{description}</p>
+          <p className="text-center">{description}</p>
         </div>
       </>
     ) : (
@@ -42,9 +42,9 @@ export const FeatureWrapper: FC<Props> = ({
           })}
         >
           <h1 className={title()}>{featureTitle}</h1>
-          <p className={"text-center"}>{description}</p>
+          <p className="text-center">{description}</p>
         </div>
-        <div className={"flex justify-center"}>
+        <div className="flex justify-center">
           <Image alt={featureTitle} src={image} />
         </div>
       </>

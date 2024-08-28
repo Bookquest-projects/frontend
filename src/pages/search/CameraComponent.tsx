@@ -1,10 +1,11 @@
+import { Button } from "@nextui-org/button";
+import { Skeleton } from "@nextui-org/react";
+import { CameraIcon, RotateCw, Send } from "lucide-react";
 import { FC, useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
-import { Button } from "@nextui-org/button";
-import { CameraIcon, RotateCw, Send } from "lucide-react";
-import { Skeleton } from "@nextui-org/react";
 
 import { useScanMutation } from "@/pages/search/queries/SearchQueryHooks.ts";
+
 const videoConstraints = {
   width: 1280,
   height: 720,
@@ -45,10 +46,10 @@ export const CameraComponent: FC<Props> = ({ onClose }) => {
   };
 
   return (
-    <div className={"flex flex-col gap-8 justify-center flex-grow"}>
-      <Skeleton className={"flex rounded-full"} isLoaded={!webcamRef} />
+    <div className="flex flex-col gap-8 justify-center flex-grow">
+      <Skeleton className="flex rounded-full" isLoaded={!webcamRef} />
       {image ? (
-        <img alt="webcam" className={"rounded-lg w-full h-full"} src={image} />
+        <img alt="webcam" className="rounded-lg w-full h-full" src={image} />
       ) : (
         <Webcam
           ref={webcamRef}
@@ -57,11 +58,11 @@ export const CameraComponent: FC<Props> = ({ onClose }) => {
           videoConstraints={videoConstraints}
         />
       )}
-      <div className={"flex justify-center gap-8 flex-grow"}>
+      <div className="flex justify-center gap-8 flex-grow">
         {image ? (
           <>
             <Button
-              color={"primary"}
+              color="primary"
               endContent={<Send />}
               isLoading={isPending}
               onClick={onSend}
@@ -69,7 +70,7 @@ export const CameraComponent: FC<Props> = ({ onClose }) => {
               Send
             </Button>
             <Button
-              color={"secondary"}
+              color="secondary"
               endContent={<RotateCw />}
               onClick={() => setImage(null)}
             >
@@ -78,7 +79,7 @@ export const CameraComponent: FC<Props> = ({ onClose }) => {
           </>
         ) : (
           <Button
-            color={"secondary"}
+            color="secondary"
             endContent={<CameraIcon />}
             onClick={capture}
           >

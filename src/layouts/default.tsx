@@ -2,13 +2,13 @@ import { ReactNode } from "react";
 
 import { Navbar } from "@/components/navbar";
 
-export default function DefaultLayout({
+export const DefaultLayout = ({
   children,
-  gradient = false,
+  gradient,
 }: {
   children: ReactNode;
   gradient?: boolean;
-}) {
+}) => {
   return (
     <div
       className={
@@ -23,7 +23,7 @@ export default function DefaultLayout({
       </main>
 
       <footer className="w-full flex flex-col p-4 items-center justify-center">
-        <div className={"flex items-center justify-center"}>
+        <div className="flex items-center justify-center">
           <p className="text-default-400">
             Copyright © 2024. All rights reserved.
           </p>
@@ -31,4 +31,4 @@ export default function DefaultLayout({
       </footer>
     </div>
   );
-}
+};
