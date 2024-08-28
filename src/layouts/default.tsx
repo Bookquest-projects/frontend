@@ -1,20 +1,20 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
-import { Navbar } from "@/components/navbar";
+import { Navbar } from '@/components/navbar';
 
 export const DefaultLayout = ({
-  children,
-  gradient,
-}: {
+                                children,
+                                gradient = false,
+                              }: {
   children: ReactNode;
   gradient?: boolean;
-}) => {
-  return (
+}) =>
+  (
     <div
       className={
         gradient
-          ? "relative flex flex-col bg-[radial-gradient(circle_400px_at_90%_200px,#fdd94f,transparent)]"
-          : "relative flex flex-col"
+          ? 'relative flex flex-col bg-[radial-gradient(circle_400px_at_90%_200px,#fdd94f,transparent)]'
+          : 'relative flex flex-col'
       }
     >
       <Navbar />
@@ -31,4 +31,4 @@ export const DefaultLayout = ({
       </footer>
     </div>
   );
-};
+
