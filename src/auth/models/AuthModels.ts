@@ -1,4 +1,8 @@
-export interface LoginResponse {
-  status: string;
-  access_token: string;
+export interface UserResponse {
+  message: string;
+}
+
+export interface UserRequest {
+  username: string;
+  password: string;
 }

@@ -1,11 +1,12 @@
 import { Button } from "@nextui-org/button";
 import { ChartLine, Rotate3DIcon, SparklesIcon } from "lucide-react";
 
-import { subtitle, grid, title } from "@/components/primitives";
+import { grid, subtitle, title } from "@/components/primitives";
 import DefaultLayout from "@/layouts/default";
 import { FeatureWrapper } from "@/components/FeatureWrapper.tsx";
 import { RocketIcon } from "@/components/icons.tsx";
 import { CardWrapper } from "@/components/CardWrapper.tsx";
+
 export default function IndexPage() {
   return (
     <DefaultLayout>
@@ -81,7 +82,9 @@ export default function IndexPage() {
               "Dive into your next read and begin your new adventure"
             }
             featureTitle={"Enjoy"}
-            image={"https://img.freepik.com/free-vector/summer-gradient-reading-books-illustration_23-2149455695.jpg?t=st=1724677264~exp=1724680864~hmac=2794631eeea5ea10bf4a211bf49639c88923da383574ae08c9479b04ce095ee3&w=1060"}
+            image={
+              "https://img.freepik.com/free-vector/summer-gradient-reading-books-illustration_23-2149455695.jpg?t=st=1724677264~exp=1724680864~hmac=2794631eeea5ea10bf4a211bf49639c88923da383574ae08c9479b04ce095ee3&w=1060"
+            }
           />
         </div>
       </section>
