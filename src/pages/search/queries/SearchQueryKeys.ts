@@ -1,5 +1,5 @@
 const SearchQueryKeys = {
-  book: (isbn?: number) => ["quote", isbn] as const,
+  book: (isbn?: string) => ["quote", isbn] as const,
   books: () => ["books"] as const,
 };
 

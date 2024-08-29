@@ -4,7 +4,7 @@ import { Book } from "@/pages/search/models/Book.ts";
 
 const BASE_API = "http://localhost:5000/books";
 
-export const getBookByIsbn = (isbn: number): Promise<Book> =>
+export const getBookByIsbn = (isbn: string): Promise<Book> =>
   axios
     .get<Book>(`${BASE_API}/${isbn}`, {
       headers: {
