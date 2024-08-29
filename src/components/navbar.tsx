@@ -1,46 +1,28 @@
-import { Button } from "@nextui-org/button";
-<<<<<<< HEAD
-import { Input } from "@nextui-org/input";
-import { Kbd } from "@nextui-org/kbd";
-=======
->>>>>>> cdce760 (feat: add login/logout logic)
-import { Link } from "@nextui-org/link";
+import { Button } from '@nextui-org/button';
+import { Link } from '@nextui-org/link';
 import {
   Navbar as NextUINavbar,
   NavbarBrand,
   NavbarContent,
-<<<<<<< HEAD
-=======
-  NavbarItem,
->>>>>>> cdce760 (feat: add login/logout logic)
+  NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
-  NavbarMenuToggle,
-} from "@nextui-org/navbar";
-<<<<<<< HEAD
-import { Tooltip } from "@nextui-org/react";
-
-import { GithubIcon, Logo, SearchIcon } from "@/components/icons";
-import { ThemeSwitch } from "@/components/theme-switch";
-import { siteConfig } from "@/config/site";
-=======
-import { link as linkStyles } from "@nextui-org/theme";
-import clsx from "clsx";
+} from '@nextui-org/navbar';
+import clsx from 'clsx';
 import {
   Avatar,
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@nextui-org/react";
-import { useNavigate } from "react-router-dom";
+} from '@nextui-org/react';
 
-import { siteConfig } from "@/config/site";
-import { ThemeSwitch } from "@/components/theme-switch";
-import { GithubIcon, Logo } from "@/components/icons";
-import { SearchInput } from "@/components/SearchInput.tsx";
-import { useAuth } from "@/auth/AuthProvider.tsx";
-import { UserCard } from "@/components/UserCard.tsx";
->>>>>>> cdce760 (feat: add login/logout logic)
+import { siteConfig } from '@/config/site';
+import { ThemeSwitch } from '@/components/theme-switch';
+import { GithubIcon, SearchIcon } from '@/components/icons';
+import { Logo } from '@/components/icons';
+import { useAuth } from '@/auth/AuthProvider.tsx';
+import { useNavigate } from 'react-router-dom';
+import { SearchInput } from '@/components/SearchInput.tsx';
 
 export const Navbar = () => {
   const { isAuthenticated } = useAuth();
@@ -67,13 +49,9 @@ export const Navbar = () => {
           <GithubIcon className="text-foreground" />
         </Link>
         <ThemeSwitch />
-<<<<<<< HEAD
-        <Tooltip color="secondary" content="Not available yet">
-          <Button isExternal as={Link} color="secondary" variant="shadow">
-=======
         {isAuthenticated ? (
           <Popover showArrow placement="bottom">
-            <PopoverTrigger className={clsx("cursor-pointer")}>
+            <PopoverTrigger className={clsx('cursor-pointer')}>
               <Avatar size="sm" />
             </PopoverTrigger>
             <PopoverContent className="p-1">
@@ -82,13 +60,12 @@ export const Navbar = () => {
           </Popover>
         ) : (
           <Button
-            color={"secondary"}
-            variant={"shadow"}
+            color={'secondary'}
+            variant={'shadow'}
             onClick={() => {
-              navigate("/frontend/login");
+              navigate('/frontend/login');
             }}
           >
->>>>>>> cdce760 (feat: add login/logout logic)
             <p>Login</p>
           </Button>
         )}
@@ -101,7 +78,7 @@ export const Navbar = () => {
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
-                color={item.label === "Search" ? "primary" : "foreground"}
+                color={item.label === 'Search' ? 'primary' : 'foreground'}
                 href={item.href}
                 size="lg"
               >

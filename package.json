@@ -24,32 +24,17 @@
     "@nextui-org/switch": "2.0.33",
     "@nextui-org/system": "2.2.5",
     "@nextui-org/theme": "2.2.9",
-<<<<<<< HEAD
-    "@react-aria/visually-hidden": "3.8.15",
-    "@tanstack/react-query": "^5.52.2",
-    "@tanstack/react-query-devtools": "^5.52.2",
-=======
     "@react-aria/visually-hidden": "3.8.12",
     "@tanstack/react-query": "^5.52.2",
->>>>>>> cdce760 (feat: add login/logout logic)
     "axios": "^1.7.5",
     "class-variance-authority": "^0.7.0",
     "clsx": "2.1.1",
     "framer-motion": "~11.3.30",
     "lucide-react": "^0.436.0",
     "react": "18.3.1",
-<<<<<<< HEAD
-    "react-camera-pro": "^1.4.0",
-    "react-dom": "^18.3.1",
-    "react-dropzone": "^14.2.3",
-    "react-router-dom": "6.26.1",
-    "react-toastify": "^10.0.5",
-    "react-webcam": "^7.2.0",
-=======
     "react-dom": "18.3.1",
     "react-router-dom": "6.23.0",
     "react-toastify": "^10.0.5",
->>>>>>> cdce760 (feat: add login/logout logic)
     "tailwind-merge": "^2.5.2",
     "tailwind-variants": "0.2.1",
     "tailwindcss": "3.4.10",
