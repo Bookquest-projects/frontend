@@ -1,32 +1,38 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 
 import AuthApi from "./AuthApi.ts";
-import BookQueryKeys from "./SearchQueryKeys.ts";
 
-import { Book } from "@/pages/search/models/Book.ts";
-import { LoginResponse } from "@/auth/models/LoginResponse.ts";
+import { UserRequest, UserResponse } from "@/auth/models/AuthModels.ts";
 
-export const useLoginQuery = () => {
-  return useQuery<LoginResponse, AxiosError>({
-    queryKey: BookQueryKeys.book(isbn),
-    queryFn: () => AuthApi.login(),
+export const useLoginMutation = () => {
+  return useMutation<UserResponse, AxiosError, UserRequest>({
+    mutationFn: (userRequest: UserRequest) => AuthApi.login(userRequest),
   });
 };
 
-export const useScanMutation = () => {
+export const useLogoutMutation = () => {
   const queryClient = useQueryClient();
 
-  return useMutation<Book, AxiosError, FormData>({
-    mutationFn: (formData) => AuthApi.postScan(formData),
+  return useMutation<UserResponse, AxiosError>({
+    mutationFn: () => AuthApi.logout(),
+    onSuccess: () => {
+      queryClient.clear();
+    },
+  });
+};
+
+export const useRegisterMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation<UserResponse, AxiosError, UserRequest>({
+    mutationFn: (userRequest: UserRequest) => AuthApi.register(userRequest),
     onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: BookQueryKeys.books(),
-      });
+      queryClient.clear();
     },
     onError: () => {
-      toast.error("Failed to scan book", {
+      toast.error("Failed to register", {
         position: "top-right",
       });
     },

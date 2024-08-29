@@ -1,43 +1,52 @@
 import { Button } from "@nextui-org/button";
+<<<<<<< HEAD
 import { Input } from "@nextui-org/input";
 import { Kbd } from "@nextui-org/kbd";
+=======
+>>>>>>> cdce760 (feat: add login/logout logic)
 import { Link } from "@nextui-org/link";
 import {
   Navbar as NextUINavbar,
   NavbarBrand,
   NavbarContent,
+<<<<<<< HEAD
+=======
+  NavbarItem,
+>>>>>>> cdce760 (feat: add login/logout logic)
   NavbarMenu,
   NavbarMenuItem,
   NavbarMenuToggle,
 } from "@nextui-org/navbar";
+<<<<<<< HEAD
 import { Tooltip } from "@nextui-org/react";
 
 import { GithubIcon, SearchIcon } from "@/components/icons";
 import { Logo } from "@/components/icons";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { siteConfig } from "@/config/site";
+=======
+import { link as linkStyles } from "@nextui-org/theme";
+import clsx from "clsx";
+import {
+  Avatar,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@nextui-org/react";
+import { useNavigate } from "react-router-dom";
+
+import { siteConfig } from "@/config/site";
+import { ThemeSwitch } from "@/components/theme-switch";
+import { GithubIcon, Logo } from "@/components/icons";
+import { SearchInput } from "@/components/SearchInput.tsx";
+import { useAuth } from "@/auth/AuthProvider.tsx";
+import { UserCard } from "@/components/UserCard.tsx";
+>>>>>>> cdce760 (feat: add login/logout logic)
 
 export const Navbar = () => {
-  const searchInput = (
-    <Input
-      aria-label="Search"
-      classNames={{
-        inputWrapper: "bg-default-100",
-        input: "text-sm",
-      }}
-      endContent={
-        <Kbd className="hidden lg:inline-block" keys={["command"]}>
-          K
-        </Kbd>
-      }
-      labelPlacement="outside"
-      placeholder="Search..."
-      startContent={
-        <SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
-      }
-      type="search"
-    />
-  );
+  const { isAuthenticated } = useAuth();
+
+  const navigate = useNavigate();
 
   return (
     <NextUINavbar maxWidth="2xl" position="sticky">
@@ -59,16 +68,36 @@ export const Navbar = () => {
           <GithubIcon className="text-foreground" />
         </Link>
         <ThemeSwitch />
+<<<<<<< HEAD
         <Tooltip color="secondary" content="Not available yet">
           <Button isExternal as={Link} color="secondary" variant="shadow">
+=======
+        {isAuthenticated ? (
+          <Popover showArrow placement="bottom">
+            <PopoverTrigger className={clsx("cursor-pointer")}>
+              <Avatar size="sm" />
+            </PopoverTrigger>
+            <PopoverContent className="p-1">
+              <UserCard />
+            </PopoverContent>
+          </Popover>
+        ) : (
+          <Button
+            color={"secondary"}
+            variant={"shadow"}
+            onClick={() => {
+              navigate("/frontend/login");
+            }}
+          >
+>>>>>>> cdce760 (feat: add login/logout logic)
             <p>Login</p>
           </Button>
-        </Tooltip>
+        )}
         <NavbarMenuToggle />
       </NavbarContent>
 
       <NavbarMenu>
-        {searchInput}
+        <SearchInput />
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
