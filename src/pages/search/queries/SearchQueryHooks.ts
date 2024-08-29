@@ -7,7 +7,7 @@ import BookQueryKeys from "./SearchQueryKeys";
 
 import { Book } from "@/pages/search/models/Book.ts";
 
-export const useBook = (isbn: number) => {
+export const useBook = (isbn: string) => {
   return useQuery<Book, AxiosError, Book | null>({
     queryKey: BookQueryKeys.book(isbn),
     queryFn: () => BookApi.getBookByIsbn(isbn),
