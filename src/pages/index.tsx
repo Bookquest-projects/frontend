@@ -1,6 +1,7 @@
 import { Button } from "@nextui-org/button";
 import { ChartLine, Rotate3DIcon, SparklesIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 import { CardWrapper } from "@/components/CardWrapper.tsx";
 import { FeatureWrapper } from "@/components/FeatureWrapper.tsx";
@@ -10,6 +11,7 @@ import { DefaultLayout } from "@/layouts/default.tsx";
 
 export const IndexPage = () => {
   const navigate = useNavigate();
+  const ref = useRef<HTMLDivElement>(null);
 
   return (
     <DefaultLayout gradient={true}>
@@ -27,7 +29,7 @@ export const IndexPage = () => {
             <Button
               color="primary"
               variant="shadow"
-              onClick={() => {
+              onPress={() => {
                 navigate("/bookquest/search");
               }}
             >
@@ -35,8 +37,9 @@ export const IndexPage = () => {
             </Button>
             <Button
               variant="shadow"
-              onClick={() => {
-                window.location.href = "/search";
+              onPress={() => {
+                if (ref.current)
+                  ref.current.scrollIntoView({ behavior: "smooth" });
               }}
             >
               Learn more
@@ -44,7 +47,7 @@ export const IndexPage = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div ref={ref} className="flex flex-col gap-4 py-8">
           <div className={grid()}>
             <CardWrapper
               body="Get instant recommendations for your next read"
@@ -69,7 +72,7 @@ export const IndexPage = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-32 py-16">
+        <div className="flex flex-col gap-32 py-8">
           <FeatureWrapper
             description={
               "Quickly scan the barcode of any book by using your phone's camera"

@@ -12,8 +12,7 @@ import {
 } from "@nextui-org/navbar";
 import { Tooltip } from "@nextui-org/react";
 
-import { GithubIcon, SearchIcon } from "@/components/icons";
-import { Logo } from "@/components/icons";
+import { GithubIcon, Logo, SearchIcon } from "@/components/icons";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { siteConfig } from "@/config/site";
 
@@ -40,7 +39,7 @@ export const Navbar = () => {
   );
 
   return (
-    <NextUINavbar maxWidth="2xl" position="sticky">
+    <NextUINavbar maxWidth="2xl" position="static">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand className="gap-4">
           <Link
