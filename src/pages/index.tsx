@@ -1,6 +1,5 @@
 import { Button } from '@nextui-org/button';
 import { ChartLine, Rotate3DIcon, SparklesIcon } from 'lucide-react';
-<<<<<<< HEAD
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,19 +16,6 @@ export const IndexPage = () => {
   return (
     <DefaultLayout gradient={true}>
       <section className="flex flex-col gap-16">
-=======
-
-import { grid, subtitle, title } from '@/components/primitives';
-import { DefaultLayout } from '@/layouts/default';
-import { FeatureWrapper } from '@/components/FeatureWrapper.tsx';
-import { RocketIcon } from '@/components/icons.tsx';
-import { CardWrapper } from '@/components/CardWrapper.tsx';
-
-export const IndexPage = () => {
-  return (
-    <DefaultLayout>
-      <section className="flex flex-col gap-16 ">
->>>>>>> e69e9d893d3e1ebf0137d70f265c6b8777333fee
         <div className="flex flex-col py-8 gap-8">
           <div className="inline-block max-w-lg">
             <h1 className={title({ size: 'lg' })}>
@@ -40,7 +26,6 @@ export const IndexPage = () => {
             </h2>
           </div>
           <div className="flex gap-8">
-<<<<<<< HEAD
             <Button
               color="primary"
               variant="shadow"
@@ -48,21 +33,13 @@ export const IndexPage = () => {
                 navigate('/bookquest/search');
               }}
             >
-=======
-            <Button color="primary" variant="shadow">
->>>>>>> e69e9d893d3e1ebf0137d70f265c6b8777333fee
               Get Started
             </Button>
             <Button
               variant="shadow"
-<<<<<<< HEAD
               onPress={() => {
                 if (ref.current)
                   ref.current.scrollIntoView({ behavior: 'smooth' });
-=======
-              onClick={() => {
-                window.location.href = '#about';
->>>>>>> e69e9d893d3e1ebf0137d70f265c6b8777333fee
               }}
             >
               Learn more

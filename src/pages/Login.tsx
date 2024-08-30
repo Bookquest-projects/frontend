@@ -14,11 +14,7 @@ export const Login = () => {
         <Button
           onClick={() => {
             login();
-<<<<<<< HEAD
             navigate('/bookquest', { replace: true });
-=======
-            navigate('/frontend/', { replace: true });
->>>>>>> e69e9d893d3e1ebf0137d70f265c6b8777333fee
           }}
         >
           Login
