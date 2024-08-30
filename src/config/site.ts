@@ -1,38 +1,19 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Vite + NextUI",
-  description: "Make beautiful websites regardless of your design experience.",
-  navItems: [
-    {
-      label: "Home",
-      href: "/",
-    },
-    {
-      label: "Docs",
-      href: "/docs",
-    },
-    {
-      label: "Pricing",
-      href: "/pricing",
-    },
-    {
-      label: "Blog",
-      href: "/blog",
-    },
-    {
-      label: "About",
-      href: "/about",
-    },
-  ],
+  name: "Bookquest",
   navMenuItems: [
     {
       label: "Profile",
-      href: "/profile",
+      href: "/bookquest/profile",
+    },
+    {
+      label: "Search",
+      href: "/bookquest/search",
     },
     {
       label: "Projects",
-      href: "/projects",
+      href: "/bookquest/projects",
     },
   ],
   links: {

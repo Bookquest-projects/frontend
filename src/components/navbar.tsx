@@ -1,24 +1,20 @@
 import { Button } from "@nextui-org/button";
+import { Input } from "@nextui-org/input";
 import { Kbd } from "@nextui-org/kbd";
 import { Link } from "@nextui-org/link";
-import { Input } from "@nextui-org/input";
 import {
   Navbar as NextUINavbar,
   NavbarBrand,
   NavbarContent,
-  NavbarItem,
-  NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
+  NavbarMenuToggle,
 } from "@nextui-org/navbar";
-import { link as linkStyles } from "@nextui-org/theme";
-import clsx from "clsx";
 import { Tooltip } from "@nextui-org/react";
 
-import { siteConfig } from "@/config/site";
+import { GithubIcon, Logo, SearchIcon } from "@/components/icons";
 import { ThemeSwitch } from "@/components/theme-switch";
-import { GithubIcon, SearchIcon } from "@/components/icons";
-import { Logo } from "@/components/icons";
+import { siteConfig } from "@/config/site";
 
 export const Navbar = () => {
   const searchInput = (
@@ -43,34 +39,18 @@ export const Navbar = () => {
   );
 
   return (
-    <NextUINavbar maxWidth="xl" position="sticky">
+    <NextUINavbar maxWidth="2xl" position="static">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-        <NavbarBrand className="gap-4 max-w-fit">
+        <NavbarBrand className="gap-4">
           <Link
             className="flex justify-start items-center gap-1"
             color="foreground"
-            href="/frontend/"
+            href="/bookquest"
           >
             <Logo />
             <p className="font-bold text-inherit">Bookquest</p>
           </Link>
         </NavbarBrand>
-        <div className="hidden lg:flex gap-4 justify-start ml-2">
-          {siteConfig.navItems.map((item) => (
-            <NavbarItem key={item.href}>
-              <Link
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium",
-                )}
-                color="foreground"
-                href={item.href}
-              >
-                {item.label}
-              </Link>
-            </NavbarItem>
-          ))}
-        </div>
       </NavbarContent>
 
       <NavbarContent className="basis-1 pl-4" justify="end">
@@ -78,8 +58,8 @@ export const Navbar = () => {
           <GithubIcon className="text-foreground" />
         </Link>
         <ThemeSwitch />
-        <Tooltip color={"secondary"} content={"Not available yet"}>
-          <Button isExternal as={Link} color={"secondary"} variant={"shadow"}>
+        <Tooltip color="secondary" content="Not available yet">
+          <Button isExternal as={Link} color="secondary" variant="shadow">
             <p>Login</p>
           </Button>
         </Tooltip>
@@ -92,8 +72,8 @@ export const Navbar = () => {
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
-                color={item.label === "Projects" ? "primary" : "foreground"}
-                href="#"
+                color={item.label === "Search" ? "primary" : "foreground"}
+                href={item.href}
                 size="lg"
               >
                 {item.label}

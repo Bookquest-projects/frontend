@@ -1,21 +1,15 @@
 import { Route, Routes } from "react-router-dom";
 
-import IndexPage from "@/pages/index";
-import DocsPage from "@/pages/docs";
-import PricingPage from "@/pages/pricing";
-import BlogPage from "@/pages/blog";
-import AboutPage from "@/pages/about";
+import { SearchPage } from "@/pages/search/SearchPage.tsx";
+import { IndexPage } from "@/pages";
 
-function App() {
+const App = () => {
   return (
     <Routes>
-      <Route element={<IndexPage />} path="/frontend/" />
-      <Route element={<DocsPage />} path="/docs" />
-      <Route element={<PricingPage />} path="/pricing" />
-      <Route element={<BlogPage />} path="/blog" />
-      <Route element={<AboutPage />} path="/about" />
+      <Route element={<IndexPage />} path="/bookquest/" />
+      <Route element={<SearchPage />} path="/bookquest/search" />
     </Routes>
   );
-}
+};
 
 export default App;
