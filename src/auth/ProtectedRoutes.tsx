@@ -10,11 +10,7 @@ interface Props {
 const ProtectedRoutes: FC<Props> = ({ children }) => {
   const { isAuthenticated } = useAuth();
 
-  return isAuthenticated ? (
-    children
-  ) : (
-    <Navigate replace to="/bookquest/login" />
-  );
+  return isAuthenticated ? children : <Navigate replace to="/frontend/login" />;
 };
 
 export default ProtectedRoutes;

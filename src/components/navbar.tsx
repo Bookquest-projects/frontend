@@ -21,8 +21,8 @@ import { siteConfig } from '@/config/site';
 import { ThemeSwitch } from '@/components/theme-switch';
 import { GithubIcon, Logo } from '@/components/icons';
 import { useAuth } from '@/auth/AuthProvider.tsx';
-import { SearchInput } from '@/components/SearchInput.tsx';
 import { UserCard } from '@/components/UserCard.tsx';
+import { SearchInput } from '@/components/SearchInput.tsx';
 
 export const Navbar = () => {
   const { isAuthenticated } = useAuth();
@@ -63,7 +63,7 @@ export const Navbar = () => {
             color="secondary"
             variant="shadow"
             onClick={() => {
-              navigate('/bookquestlogin');
+              navigate('/bookquest/login');
             }}
           >
             <p>Login</p>
