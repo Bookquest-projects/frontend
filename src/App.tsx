@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 
-import IndexPage from '@/pages/index';
+import { IndexPage } from '@/pages';
 import { Login } from '@/pages/Login.tsx';
 import AuthProvider from '@/auth/AuthProvider.tsx';
 
