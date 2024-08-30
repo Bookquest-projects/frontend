@@ -1,10 +1,10 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { AxiosError } from "axios";
-import { toast } from "react-toastify";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+import { toast } from 'react-toastify';
 
-import AuthApi from "./AuthApi.ts";
+import AuthApi from './AuthApi.ts';
 
-import { UserRequest, UserResponse } from "@/auth/models/AuthModels.ts";
+import { UserRequest, UserResponse } from '@/auth/models/AuthModels.ts';
 
 export const useLoginMutation = () => {
   return useMutation<UserResponse, AxiosError, UserRequest>({
@@ -32,8 +32,8 @@ export const useRegisterMutation = () => {
       queryClient.clear();
     },
     onError: () => {
-      toast.error("Failed to register", {
-        position: "top-right",
+      toast.error('Failed to register', {
+        position: 'top-right',
       });
     },
   });

@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { UserRequest, UserResponse } from "@/auth/models/AuthModels.ts";
-import { getCookie } from "@/shared/cookies.ts";
+import { UserRequest, UserResponse } from '@/auth/models/AuthModels.ts';
+import { getCookie } from '@/shared/cookies.ts';
 
-const BASE_API = "http://localhost:5000/auth";
+const BASE_API = 'http://localhost:5000/auth';
 
 axios.defaults.withCredentials = true;
 
@@ -26,7 +26,7 @@ const logout = (): Promise<any> =>
       {},
       {
         headers: {
-          "X-CSRF-TOKEN": getCookie("csrf_access_token"),
+          'X-CSRF-TOKEN': getCookie('csrf_access_token'),
         },
       },
     )

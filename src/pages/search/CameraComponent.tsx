@@ -1,15 +1,15 @@
-import { Button } from "@nextui-org/button";
-import { Skeleton } from "@nextui-org/react";
-import { CameraIcon, RotateCw, Send } from "lucide-react";
-import { FC, useCallback, useRef, useState } from "react";
-import Webcam from "react-webcam";
+import { Button } from '@nextui-org/button';
+import { Skeleton } from '@nextui-org/react';
+import { CameraIcon, RotateCw, Send } from 'lucide-react';
+import { FC, useCallback, useRef, useState } from 'react';
+import Webcam from 'react-webcam';
 
-import { useScanMutation } from "@/pages/search/queries/SearchQueryHooks.ts";
+import { useScanMutation } from '@/pages/search/queries/SearchQueryHooks.ts';
 
 const videoConstraints = {
   width: 1280,
   height: 720,
-  facingMode: "user",
+  facingMode: 'user',
 };
 
 interface Props {
@@ -33,10 +33,10 @@ export const CameraComponent: FC<Props> = ({ onClose }) => {
       const blob = await fetch(image).then((r) => r.blob());
 
       if (blob) {
-        const file = new File([blob], "image.jpeg", { type: "image/jpeg" });
+        const file = new File([blob], 'image.jpeg', { type: 'image/jpeg' });
         const formData = new FormData();
 
-        formData.append("image", file);
+        formData.append('image', file);
         uploadImage(formData);
       }
     }

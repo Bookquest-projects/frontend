@@ -1,30 +1,28 @@
-import { Button } from "@nextui-org/button";
-import { Link } from "@nextui-org/link";
+import { Button } from '@nextui-org/button';
+import { Link } from '@nextui-org/link';
 import {
   Navbar as NextUINavbar,
   NavbarBrand,
   NavbarContent,
-  NavbarItem,
   NavbarMenu,
   NavbarMenuItem,
   NavbarMenuToggle,
-} from "@nextui-org/navbar";
-import { link as linkStyles } from "@nextui-org/theme";
-import clsx from "clsx";
+} from '@nextui-org/navbar';
+import clsx from 'clsx';
 import {
   Avatar,
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@nextui-org/react";
-import { useNavigate } from "react-router-dom";
+} from '@nextui-org/react';
+import { useNavigate } from 'react-router-dom';
 
-import { siteConfig } from "@/config/site";
-import { ThemeSwitch } from "@/components/theme-switch";
-import { GithubIcon, Logo } from "@/components/icons";
-import { SearchInput } from "@/components/SearchInput.tsx";
-import { useAuth } from "@/auth/AuthProvider.tsx";
-import { UserCard } from "@/components/UserCard.tsx";
+import { siteConfig } from '@/config/site';
+import { ThemeSwitch } from '@/components/theme-switch';
+import { GithubIcon, Logo } from '@/components/icons';
+import { SearchInput } from '@/components/SearchInput.tsx';
+import { useAuth } from '@/auth/AuthProvider.tsx';
+import { UserCard } from '@/components/UserCard.tsx';
 
 export const Navbar = () => {
   const { isAuthenticated } = useAuth();
@@ -44,22 +42,6 @@ export const Navbar = () => {
             <p className="font-bold text-inherit">Bookquest</p>
           </Link>
         </NavbarBrand>
-        <div className="hidden lg:flex gap-4 justify-start ml-2">
-          {siteConfig.navItems.map((item) => (
-            <NavbarItem key={item.href}>
-              <Link
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium",
-                )}
-                color="foreground"
-                href={item.href}
-              >
-                {item.label}
-              </Link>
-            </NavbarItem>
-          ))}
-        </div>
       </NavbarContent>
 
       <NavbarContent className="basis-1 pl-4" justify="end">
@@ -69,7 +51,7 @@ export const Navbar = () => {
         <ThemeSwitch />
         {isAuthenticated ? (
           <Popover showArrow placement="bottom">
-            <PopoverTrigger className={clsx("cursor-pointer")}>
+            <PopoverTrigger className={clsx('cursor-pointer')}>
               <Avatar size="sm" />
             </PopoverTrigger>
             <PopoverContent className="p-1">
@@ -78,10 +60,10 @@ export const Navbar = () => {
           </Popover>
         ) : (
           <Button
-            color={"secondary"}
-            variant={"shadow"}
+            color="secondary"
+            variant="shadow"
             onClick={() => {
-              navigate("/frontend/login");
+              navigate('/frontend/login');
             }}
           >
             <p>Login</p>
@@ -96,7 +78,7 @@ export const Navbar = () => {
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
-                color={item.label === "Projects" ? "primary" : "foreground"}
+                color={item.label === 'Projects' ? 'primary' : 'foreground'}
                 href="#"
                 size="lg"
               >

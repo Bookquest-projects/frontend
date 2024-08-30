@@ -1,16 +1,16 @@
 {
   "$schema": "https://json.schemastore.org/eslintrc.json",
   "env": {
-    "browser": false,
+    "browser": true,
     "es2021": true,
     "node": true
   },
   "extends": [
+    "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
-    "plugin:@tanstack/eslint-plugin-query/recommended"
+    "plugin:prettier/recommended"
   ],
   "plugins": [
     "react",

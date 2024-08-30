@@ -1,10 +1,10 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from 'react-router-dom';
 
-import IndexPage from "@/pages/index";
-import { Login } from "@/pages/Login.tsx";
-import AuthProvider from "@/auth/AuthProvider.tsx";
+import IndexPage from '@/pages/index';
+import { Login } from '@/pages/Login.tsx';
+import AuthProvider from '@/auth/AuthProvider.tsx';
 
-function App() {
+const App = () => {
   return (
     <AuthProvider>
       <Routes>
@@ -13,6 +13,6 @@ function App() {
       </Routes>
     </AuthProvider>
   );
-}
+};
 
 export default App;

@@ -1,8 +1,8 @@
-import { Button } from "@nextui-org/button";
-import { useNavigate } from "react-router-dom";
+import { Button } from '@nextui-org/button';
+import { useNavigate } from 'react-router-dom';
 
-import DefaultLayout from "@/layouts/default.tsx";
-import { useAuth } from "@/auth/AuthProvider.tsx";
+import { useAuth } from '@/auth/AuthProvider.tsx';
+import { DefaultLayout } from '@/layouts/default.tsx';
 
 export const Login = () => {
   const { login } = useAuth();
@@ -14,7 +14,7 @@ export const Login = () => {
         <Button
           onClick={() => {
             login();
-            navigate("/frontend/", { replace: true });
+            navigate('/frontend/', { replace: true });
           }}
         >
           Login
