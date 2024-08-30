@@ -6,7 +6,7 @@ import { SearchPage } from '@/pages/search/SearchPage.tsx';
 import { Login } from '@/pages/Login.tsx';
 import AuthProvider from '@/auth/AuthProvider.tsx';
 
-function App() {
+const App = () => {
   return (
     <AuthProvider>
       <Routes>

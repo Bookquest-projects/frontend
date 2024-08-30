@@ -5,6 +5,7 @@ import { ReactNode } from 'react';
 import App from './App';
 
 vi.mock('react-router-dom', () => ({
+  AuthProvider: ({ children }: { children: ReactNode }) => children,
   Route: ({ element }: { element: ReactNode }) => element,
   Routes: ({ children }: { children: ReactNode }) => children,
   Link: ({ children }: { children: string }) => <a href="/">{children}</a>,
