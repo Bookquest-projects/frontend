@@ -1,14 +1,19 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from 'react-router-dom';
 
-import { SearchPage } from "@/pages/search/SearchPage.tsx";
-import { IndexPage } from "@/pages";
+import { IndexPage } from '@/pages';
+import { SearchPage } from '@/pages/search/SearchPage.tsx';
+import { Login } from '@/pages/Login.tsx';
+import AuthProvider from '@/auth/AuthProvider.tsx';
 
 const App = () => {
   return (
-    <Routes>
-      <Route element={<IndexPage />} path="/bookquest/" />
-      <Route element={<SearchPage />} path="/bookquest/search" />
-    </Routes>
+    <AuthProvider>
+      <Routes>
+        <Route element={<IndexPage />} path="/bookquest" />
+        <Route element={<Login />} path="/bookquest/login" />
+        <Route element={<SearchPage />} path="/bookquest/search" />
+      </Routes>
+    </AuthProvider>
   );
 };
 

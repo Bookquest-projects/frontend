@@ -1,27 +1,27 @@
-import { Button } from "@nextui-org/button";
-import { ChartLine, Rotate3DIcon, SparklesIcon } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
+import { Button } from '@nextui-org/button';
+import { ChartLine, Rotate3DIcon, SparklesIcon } from 'lucide-react';
+import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { CardWrapper } from "@/components/CardWrapper.tsx";
-import { FeatureWrapper } from "@/components/FeatureWrapper.tsx";
-import { RocketIcon } from "@/components/icons.tsx";
-import { grid, subtitle, title } from "@/components/primitives";
-import { DefaultLayout } from "@/layouts/default.tsx";
+import { grid, subtitle, title } from '@/components/primitives';
+import { DefaultLayout } from '@/layouts/default';
+import { FeatureWrapper } from '@/components/FeatureWrapper.tsx';
+import { RocketIcon } from '@/components/icons.tsx';
+import { CardWrapper } from '@/components/CardWrapper.tsx';
 
 export const IndexPage = () => {
-  const navigate = useNavigate();
   const ref = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   return (
     <DefaultLayout gradient={true}>
       <section className="flex flex-col gap-16">
         <div className="flex flex-col py-8 gap-8">
           <div className="inline-block max-w-lg">
-            <h1 className={title({ size: "lg" })}>
+            <h1 className={title({ size: 'lg' })}>
               Your Quest for the Perfect Book Begins Here
             </h1>
-            <h2 className={subtitle({ class: "mt-4" })}>
+            <h2 className={subtitle({ class: 'mt-4' })}>
               Beautiful, fast and modern book scanner app.
             </h2>
           </div>
@@ -30,7 +30,7 @@ export const IndexPage = () => {
               color="primary"
               variant="shadow"
               onPress={() => {
-                navigate("/bookquest/search");
+                navigate('/bookquest/search');
               }}
             >
               Get Started
@@ -39,7 +39,7 @@ export const IndexPage = () => {
               variant="shadow"
               onPress={() => {
                 if (ref.current)
-                  ref.current.scrollIntoView({ behavior: "smooth" });
+                  ref.current.scrollIntoView({ behavior: 'smooth' });
               }}
             >
               Learn more
