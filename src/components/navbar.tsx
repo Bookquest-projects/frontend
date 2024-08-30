@@ -4,9 +4,9 @@ import {
   Navbar as NextUINavbar,
   NavbarBrand,
   NavbarContent,
-  NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
+  NavbarMenuToggle,
 } from '@nextui-org/navbar';
 import clsx from 'clsx';
 import {
@@ -15,14 +15,14 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@nextui-org/react';
+import { useNavigate } from 'react-router-dom';
 
 import { siteConfig } from '@/config/site';
 import { ThemeSwitch } from '@/components/theme-switch';
-import { GithubIcon, SearchIcon } from '@/components/icons';
-import { Logo } from '@/components/icons';
+import { GithubIcon, Logo } from '@/components/icons';
 import { useAuth } from '@/auth/AuthProvider.tsx';
-import { useNavigate } from 'react-router-dom';
 import { SearchInput } from '@/components/SearchInput.tsx';
+import { UserCard } from '@/components/UserCard.tsx';
 
 export const Navbar = () => {
   const { isAuthenticated } = useAuth();
@@ -60,10 +60,10 @@ export const Navbar = () => {
           </Popover>
         ) : (
           <Button
-            color={'secondary'}
-            variant={'shadow'}
+            color="secondary"
+            variant="shadow"
             onClick={() => {
-              navigate('/frontend/login');
+              navigate('/bookquestlogin');
             }}
           >
             <p>Login</p>

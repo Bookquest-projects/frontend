@@ -38,7 +38,7 @@ export const UserCard = () => {
           onPress={() => {
             logoutMutate();
             logout();
-            navigate('/frontend/login', { replace: true });
+            navigate('/bookquest/login', { replace: true });
           }}
         >
           Log out

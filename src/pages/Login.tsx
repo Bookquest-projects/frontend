@@ -14,7 +14,7 @@ export const Login = () => {
         <Button
           onClick={() => {
             login();
-            navigate('/frontend/', { replace: true });
+            navigate('/bookquest', { replace: true });
           }}
         >
           Login

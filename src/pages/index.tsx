@@ -1,5 +1,7 @@
 import { Button } from '@nextui-org/button';
 import { ChartLine, Rotate3DIcon, SparklesIcon } from 'lucide-react';
+import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { grid, subtitle, title } from '@/components/primitives';
 import { DefaultLayout } from '@/layouts/default';
@@ -8,6 +10,9 @@ import { RocketIcon } from '@/components/icons.tsx';
 import { CardWrapper } from '@/components/CardWrapper.tsx';
 
 export const IndexPage = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+
   return (
     <DefaultLayout gradient={true}>
       <section className="flex flex-col gap-16">
@@ -70,7 +75,7 @@ export const IndexPage = () => {
         <div className="flex flex-col gap-32 py-8">
           <FeatureWrapper
             description={
-              'Quickly scan the barcode of any book by using your phone\'s camera'
+              "Quickly scan the barcode of any book by using your phone's camera"
             }
             featureTitle="Scan"
             image="https://t3.ftcdn.net/jpg/07/55/29/78/360_F_755297833_OZALjEEqDRQv3mmQRKCSArTk3RSWkHT2.jpg"
