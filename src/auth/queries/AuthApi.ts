@@ -13,7 +13,7 @@ const baseAxios = axios.create({
 
 const login = (userRequest: UserRequest): Promise<UserResponse> =>
   baseAxios
-    .post<UserRequest>(`/login`, userRequest)
+    .post<UserResponse>(`/login`, userRequest)
     .then((response) => response.data)
     .catch((error) => {
       throw error;
@@ -37,7 +37,7 @@ const logout = (): Promise<any> =>
 
 const register = (userRequest: UserRequest): Promise<UserResponse> =>
   baseAxios
-    .post<UserRequest>(`/register`, userRequest)
+    .post<UserResponse>(`/register`, userRequest)
     .then((response) => response.data)
     .catch((error) => {
       throw error;
