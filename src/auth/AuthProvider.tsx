@@ -25,13 +25,13 @@ interface Props {
 
 const AuthProvider: FC<Props> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
-    getCookie('access_token_cookie') !== null ||
+    getCookie('access_token_cookie') !== null &&
       getCookie('access_token_cookie') !== '',
   );
 
   const login = async () => {
     setIsAuthenticated(
-      getCookie('access_token_cookie') !== null ||
+      getCookie('access_token_cookie') !== null &&
         getCookie('access_token_cookie') !== '',
     );
   };
