@@ -1,5 +1,5 @@
-import { Card, CardBody, CardHeader } from "@nextui-org/react";
-import { FC, ReactNode } from "react";
+import { Card, CardBody, CardHeader } from '@nextui-org/react';
+import { FC, ReactNode } from 'react';
 
 interface Props {
   cardTitle?: string;

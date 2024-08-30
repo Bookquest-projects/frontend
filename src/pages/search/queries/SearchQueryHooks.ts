@@ -1,11 +1,11 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { AxiosError } from "axios";
-import { toast } from "react-toastify";
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+import { toast } from 'react-toastify';
 
-import BookApi from "./BookApi.ts";
-import BookQueryKeys from "./SearchQueryKeys";
+import BookApi from './BookApi.ts';
+import BookQueryKeys from './SearchQueryKeys';
 
-import { Book } from "@/pages/search/models/Book.ts";
+import { Book } from '@/pages/search/models/Book.ts';
 
 export const useBook = (isbn: string) => {
   return useQuery<Book, AxiosError, Book | null>({
@@ -25,8 +25,8 @@ export const useScanMutation = () => {
       });
     },
     onError: () => {
-      toast.error("Failed to scan book", {
-        position: "top-right",
+      toast.error('Failed to scan book', {
+        position: 'top-right',
       });
     },
   });

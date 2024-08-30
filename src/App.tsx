@@ -10,10 +10,9 @@ function App() {
   return (
     <AuthProvider>
       <Routes>
-        <Route element={<IndexPage />} path="/frontend/" />
-        <Route element={<Login />} path="/frontend/login" />
+        <Route element={<IndexPage />} path="/bookquest" />
+        <Route element={<Login />} path="/bookquest/login" />
         <Route element={<SearchPage />} path="/bookquest/search" />
-
       </Routes>
     </AuthProvider>
   );

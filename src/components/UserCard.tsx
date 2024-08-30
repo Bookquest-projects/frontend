@@ -4,11 +4,11 @@ import {
   Card,
   CardFooter,
   CardHeader,
-} from "@nextui-org/react";
-import { useNavigate } from "react-router-dom";
+} from '@nextui-org/react';
+import { useNavigate } from 'react-router-dom';
 
-import { useAuth } from "@/auth/AuthProvider.tsx";
-import { useLogoutMutation } from "@/auth/queries/AuthQueryHooks.ts";
+import { useAuth } from '@/auth/AuthProvider.tsx';
+import { useLogoutMutation } from '@/auth/queries/AuthQueryHooks.ts';
 
 export const UserCard = () => {
   const { logout } = useAuth();
@@ -33,12 +33,12 @@ export const UserCard = () => {
           See Profile
         </Button>
         <Button
-          color={"secondary"}
+          color="secondary"
           size="sm"
           onPress={() => {
             logoutMutate();
             logout();
-            navigate("/frontend/login", { replace: true });
+            navigate('/frontend/login', { replace: true });
           }}
         >
           Log out

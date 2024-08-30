@@ -5,9 +5,9 @@ import {
   useContext,
   useMemo,
   useState,
-} from "react";
+} from 'react';
 
-import { getCookie } from "@/shared/cookies.ts";
+import { getCookie } from '@/shared/cookies.ts';
 
 const AuthContext = createContext<{
   isAuthenticated: boolean;
@@ -25,14 +25,14 @@ interface Props {
 
 const AuthProvider: FC<Props> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
-    getCookie("access_token_cookie") !== null ||
-      getCookie("access_token_cookie") !== "",
+    getCookie('access_token_cookie') !== null ||
+      getCookie('access_token_cookie') !== '',
   );
 
   const login = async () => {
     setIsAuthenticated(
-      getCookie("access_token_cookie") !== null ||
-        getCookie("access_token_cookie") !== "",
+      getCookie('access_token_cookie') !== null ||
+        getCookie('access_token_cookie') !== '',
     );
   };
 

@@ -1,22 +1,22 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Bookquest",
+  name: 'Bookquest',
   navMenuItems: [
     {
-      label: "Profile",
-      href: "/bookquest/profile",
+      label: 'Profile',
+      href: '/bookquest/profile',
     },
     {
-      label: "Search",
-      href: "/bookquest/search",
+      label: 'Search',
+      href: '/bookquest/search',
     },
     {
-      label: "Projects",
-      href: "/bookquest/projects",
+      label: 'Projects',
+      href: '/bookquest/projects',
     },
   ],
   links: {
-    github: "https://github.com/Bookquest-projects",
+    github: 'https://github.com/Bookquest-projects',
   },
 };

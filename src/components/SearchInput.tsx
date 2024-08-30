@@ -1,17 +1,17 @@
-import { Kbd } from "@nextui-org/kbd";
-import { Input } from "@nextui-org/input";
+import { Kbd } from '@nextui-org/kbd';
+import { Input } from '@nextui-org/input';
 
-import { SearchIcon } from "@/components/icons";
+import { SearchIcon } from '@/components/icons';
 
 export const SearchInput = () => (
   <Input
     aria-label="Search"
     classNames={{
-      inputWrapper: "bg-default-100",
-      input: "text-sm",
+      inputWrapper: 'bg-default-100',
+      input: 'text-sm',
     }}
     endContent={
-      <Kbd className="hidden lg:inline-block" keys={["command"]}>
+      <Kbd className="hidden lg:inline-block" keys={['command']}>
         K
       </Kbd>
     }

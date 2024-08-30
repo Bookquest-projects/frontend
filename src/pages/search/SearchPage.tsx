@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { DefaultLayout } from "@/layouts/default.tsx";
-import { CameraComponent } from "@/pages/search/CameraComponent.tsx";
-import { ScanComponent } from "@/pages/search/ScanComponent.tsx";
+import { DefaultLayout } from '@/layouts/default.tsx';
+import { CameraComponent } from '@/pages/search/CameraComponent.tsx';
+import { ScanComponent } from '@/pages/search/ScanComponent.tsx';
 
 export const SearchPage = () => {
   const [open, setOpen] = useState(false);

@@ -1,7 +1,7 @@
-import { Image } from "@nextui-org/image";
-import { FC } from "react";
+import { Image } from '@nextui-org/image';
+import { FC } from 'react';
 
-import { flex, grid, title } from "@/components/primitives.ts";
+import { flex, grid, title } from '@/components/primitives.ts';
 
 interface Props {
   featureTitle: string;
@@ -23,9 +23,9 @@ export const FeatureWrapper: FC<Props> = ({
         </div>
         <div
           className={flex({
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
           })}
         >
           <h1 className={title()}>{featureTitle}</h1>
@@ -36,9 +36,9 @@ export const FeatureWrapper: FC<Props> = ({
       <>
         <div
           className={flex({
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
           })}
         >
           <h1 className={title()}>{featureTitle}</h1>

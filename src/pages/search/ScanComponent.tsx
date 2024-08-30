@@ -1,14 +1,14 @@
-import { Input } from "@nextui-org/input";
-import { CameraIcon, SearchIcon, Upload } from "lucide-react";
-import { FC, useState } from "react";
+import { Input } from '@nextui-org/input';
+import { CameraIcon, SearchIcon, Upload } from 'lucide-react';
+import { FC, useState } from 'react';
 
-import { UploadComponent } from "@/pages/search/UploadComponent.tsx";
+import { UploadComponent } from '@/pages/search/UploadComponent.tsx';
 
 interface Props {
   onClick: () => void;
 }
 export const ScanComponent: FC<Props> = ({ onClick }) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const [openUpload, setOpenUpload] = useState(false);
 
   return (
