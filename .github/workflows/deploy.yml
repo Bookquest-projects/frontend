@@ -10,34 +10,34 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.7
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+      - name: Enable corepack
+        run: corepack enable
       - name: install Nodejs
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
+          cache: 'yarn'
       - name: Install dependencies
-        run: pnpm install
+        run: yarn install
       - name: Run lint
-        run: pnpm run lint
+        run: yarn lint
 
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.7
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+      - name: Enable corepack
+        run: corepack enable
       - name: install Nodejs
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
+          cache: 'yarn'
       - name: Install dependencies
-        run: pnpm install
+        run: yarn install
       - name: Run tests
-        run: pnpm test
+        run: yarn test
 
   build:
     runs-on: ubuntu-latest
@@ -45,17 +45,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.7
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+      - name: Enable corepack
+        run: corepack enable
       - name: install Nodejs
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
+          cache: 'yarn'
       - name: Install dependencies
-        run: pnpm install
+        run: yarn install
       - name: Build project
-        run: pnpm run build
+        run: yarn build
       - name: Upload production-ready build files
         uses: actions/upload-pages-artifact@v3
         with:
