@@ -4,7 +4,7 @@ import { CameraIcon, RotateCw, Send } from 'lucide-react';
 import { FC, useCallback, useRef, useState } from 'react';
 import Webcam from 'react-webcam';
 
-import { useScanMutation } from '@/pages/search/queries/SearchQueryHooks.ts';
+import { useScanMutation } from '@/pages/search/books/queries/BooksQueryHooks.ts';
 
 const videoConstraints = {
   width: 1280,

@@ -1,10 +1,17 @@
 import { Button } from '@nextui-org/button';
-import { UploadIcon } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { UploadIcon, XIcon } from 'lucide-react';
+import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
-import { useScanMutation } from '@/pages/search/queries/SearchQueryHooks.ts';
-export const UploadComponent = () => {
+import { useScanMutation } from '@/pages/search/books/queries/BooksQueryHooks.ts';
+import { Book } from '@/pages/search/models/Book.ts';
+
+interface Props {
+  setBook: Dispatch<SetStateAction<Book | null>>;
+  onClose: () => void;
+}
+
+export const UploadComponent: FC<Props> = ({ setBook, onClose }) => {
   const [file, setFile] = useState<File | null>(null);
   const { acceptedFiles, getRootProps, getInputProps, fileRejections } =
     useDropzone({
@@ -23,7 +30,15 @@ export const UploadComponent = () => {
       const formData = new FormData();
 
       formData.append('image', file);
-      uploadImage(formData);
+      uploadImage(formData, {
+        onSuccess: (data) => {
+          setBook(data);
+          setFile(null);
+        },
+        onError: () => {
+          setBook(null);
+        },
+      });
     }
   };
 
@@ -77,6 +92,16 @@ export const UploadComponent = () => {
           ) : null}
         </div>
       )}
+      <Button
+        className="flex-shrink-1"
+        endContent={<XIcon />}
+        onClick={() => {
+          setFile(null);
+          onClose();
+        }}
+      >
+        Close
+      </Button>
     </div>
   );
 };
