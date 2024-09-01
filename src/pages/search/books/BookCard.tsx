@@ -23,7 +23,7 @@ export const BookCard: FC<Props> = ({ book }) => {
           <p className="text text-bold">{book.title}</p>
           <p className="text text-sm text-default-500">
             {book.authors.map((author) => (
-              <div>{author}</div>
+              <div key={author}>{author}</div>
             ))}
           </p>
         </div>

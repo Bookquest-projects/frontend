@@ -47,7 +47,7 @@ export const BookItem: FC<Props> = ({ book }) => {
                 <p className=" text-sm text-default-500">
                   by{' '}
                   {book.authors.map((author) => (
-                    <div>{author}</div>
+                    <div key={author}>{author}</div>
                   ))}
                 </p>
                 {book.average_rating !== '' ? (
