@@ -9,4 +9,7 @@ export default defineConfig({
     environment: 'jsdom',
   },
   base: '/bookquest',
+  server: {
+    host: true,
+  },
 });
