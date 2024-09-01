@@ -5,11 +5,15 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
-  test: {
-    environment: 'jsdom',
+  base: '/',
+  preview: {
+    port: 8080,
+    strictPort: true,
   },
-  base: '/bookquest',
   server: {
+    port: 8080,
+    strictPort: true,
     host: true,
+    origin: 'http://0.0.0.0:8080',
   },
 });

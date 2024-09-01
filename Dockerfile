@@ -1,24 +1,27 @@
-FROM node:20-slim AS base
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable
-COPY . /app
+FROM node:20-alpine
+
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml .npmrc ./
-COPY tailwind.config.js postcss.config.js ./
+COPY package.json yarn.lock ./
 
-FROM base AS prod-deps
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
+RUN corepack enable
 
-FROM base AS build
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
-RUN pnpm run build
+RUN npm install -g serve
 
-FROM base
-COPY --from=prod-deps /app/node_modules /app/node_modules
-COPY --from=build /app/dist /app/dist
+RUN echo 'nodeLinker: "node-modules"' > ./.yarnrc.yml
+RUN \
+    if [ -f yarn.lock ]; then yarn install --immutable; \
+    elif [ -f package-lock.json ]; then npm ci; \
+    elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
+    else echo "Lockfile not found." && exit 1; \
+    fi
 
-EXPOSE 5173
 
-CMD [ "pnpm", "run", "dev" ]
+COPY . .
+
+RUN ls -lhat
+RUN yarn run build
+
+EXPOSE 3000
+
+CMD [ "serve", "-s", "dist" ]
