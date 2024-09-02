@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { useAuth } from '@/auth/AuthProvider.tsx';
 import { useLoginMutation } from '@/auth/queries/AuthQueryHooks.ts';
 import { Form } from '@/pages/Form.tsx';
@@ -6,7 +8,7 @@ export const Login = () => {
   const { login } = useAuth();
 
   const { mutate } = useLoginMutation();
-
+  const navigate = useNavigate();
   const submit = (usernameValue: string, passwordValue: string) => {
     mutate(
       {
@@ -16,8 +18,9 @@ export const Login = () => {
       {
         onSuccess: () => {
           login();
+          navigate('/');
         },
-      },
+      }
     );
   };
 

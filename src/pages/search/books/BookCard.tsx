@@ -17,7 +17,7 @@ interface Props {
 
 export const BookCard: FC<Props> = ({ book }) => {
   return (
-    <div className="flex flex-col col-span-3 gap-4">
+    <div className="flex flex-col col-span-3 gap-4 min-w-[300px]">
       <div className="flex justify-between">
         <div className="flex flex-col">
           <p className="text text-bold">{book.title}</p>

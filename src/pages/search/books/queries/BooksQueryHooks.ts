@@ -66,3 +66,10 @@ export const useReviewsQuery = (isbn: string) => {
     queryFn: () => BooksApi.getReviews(isbn),
   });
 };
+
+export const useBookshelfQuery = (name: string) => {
+  return useQuery<Book[], AxiosError>({
+    queryKey: BooksQueryKeys.bookshelf(name),
+    queryFn: () => BooksApi.getBookshelf(name),
+  });
+};

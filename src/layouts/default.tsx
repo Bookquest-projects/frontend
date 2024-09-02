@@ -17,7 +17,7 @@ export const DefaultLayout = ({
     }
   >
     <Navbar />
-    <main className="container mx-auto max-w-7xl px-8 flex-grow pb-24">
+    <main className="container mx-auto px-8 flex-grow pb-24 min-h-[calc(100dvh-8rem)]">
       {children}
     </main>
 

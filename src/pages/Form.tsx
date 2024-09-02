@@ -53,7 +53,7 @@ export const Form: FC<Props> = ({ title, link, linkText, text, submit }) => {
                         msg1 += 'must be between 3 and 45 characters';
                       if (
                         !usernameValue.match(
-                          /^[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]*$/,
+                          /^[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]*$/
                         )
                       )
                         msg2 +=
@@ -102,7 +102,7 @@ export const Form: FC<Props> = ({ title, link, linkText, text, submit }) => {
                         msg1 += 'must be between 8 and 45 characters';
                       if (
                         !passwordValue.match(
-                          /^[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]*$/,
+                          /^[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]*$/
                         )
                       )
                         msg2 +=

@@ -21,7 +21,7 @@ export const SignUp = () => {
           login();
           navigate('/');
         },
-      },
+      }
     );
   };
 
