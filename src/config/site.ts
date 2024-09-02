@@ -15,6 +15,10 @@ export const siteConfig = {
       label: 'Projects',
       href: '/bookquest/projects',
     },
+    {
+      label: 'Bookshelf',
+      href: '/bookshelf',
+    },
   ],
   links: {
     github: 'https://github.com/Bookquest-projects',

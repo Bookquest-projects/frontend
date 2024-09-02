@@ -1,11 +1,14 @@
+import { useNavigate } from 'react-router-dom';
+
 import { useAuth } from '@/auth/AuthProvider.tsx';
-import { useLoginMutation } from '@/auth/queries/AuthQueryHooks.ts';
+import { useRegisterMutation } from '@/auth/queries/AuthQueryHooks.ts';
 import { Form } from '@/pages/Form.tsx';
 
-export const Login = () => {
+export const SignUp = () => {
   const { login } = useAuth();
+  const { mutate } = useRegisterMutation();
 
-  const { mutate } = useLoginMutation();
+  const navigate = useNavigate();
 
   const submit = (usernameValue: string, passwordValue: string) => {
     mutate(
@@ -16,6 +19,7 @@ export const Login = () => {
       {
         onSuccess: () => {
           login();
+          navigate('/');
         },
       },
     );
@@ -23,11 +27,11 @@ export const Login = () => {
 
   return (
     <Form
-      link="/sign-up"
-      linkText="Sign up"
+      link="/login"
+      linkText="Login"
       submit={submit}
-      text="Need to create an account?"
-      title="Login"
+      text="Already have an account?"
+      title="Sign Up"
     />
   );
 };
