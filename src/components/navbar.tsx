@@ -1,5 +1,4 @@
 import { Button } from '@nextui-org/button';
-import { Link } from '@nextui-org/link';
 import {
   Navbar as NextUINavbar,
   NavbarBrand,
@@ -15,7 +14,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@nextui-org/react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { siteConfig } from '@/config/site';
 import { ThemeSwitch } from '@/components/theme-switch';
@@ -36,7 +35,7 @@ export const Navbar = () => {
           <Link
             className="flex justify-start items-center gap-1"
             color="foreground"
-            href="/bookquest"
+            to="/"
           >
             <Logo />
             <p className="font-bold text-inherit">Bookquest</p>
@@ -45,7 +44,7 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="basis-1 pl-4" justify="end">
-        <Link isExternal href={siteConfig.links.github}>
+        <Link to={siteConfig.links.github}>
           <GithubIcon className="text-foreground" />
         </Link>
         <ThemeSwitch />
@@ -63,7 +62,7 @@ export const Navbar = () => {
             color="secondary"
             variant="shadow"
             onClick={() => {
-              navigate('/bookquest/login');
+              navigate('/login');
             }}
           >
             <p>Login</p>
@@ -79,8 +78,7 @@ export const Navbar = () => {
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
                 color={item.label === 'Search' ? 'primary' : 'foreground'}
-                href={item.href}
-                size="lg"
+                to={item.href}
               >
                 {item.label}
               </Link>

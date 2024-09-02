@@ -65,9 +65,9 @@
       }
     ],
     "react/jsx-max-depth": [
-      "error",
+      "warn",
       {
-        "max": 5
+        "max": 8
       }
     ],
     "react/function-component-definition": [
@@ -96,8 +96,13 @@
     "react-hooks/exhaustive-deps": "off",
     "jsx-a11y/click-events-have-key-events": "warn",
     "jsx-a11y/interactive-supports-focus": "warn",
-    "prettier/prettier": "warn",
-    "no-unused-vars": "warn",
+    "prettier/prettier": [
+      "warn",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "no-unused-vars": "error",
     "unused-imports/no-unused-vars": "error",
     "unused-imports/no-unused-imports": "error",
     "@typescript-eslint/no-unused-vars": [

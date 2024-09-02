@@ -26,18 +26,31 @@ export const title = tv({
   },
   compoundVariants: [
     {
-      color: [
-        'violet',
-        'yellow',
-        'blue',
-        'cyan',
-        'green',
-        'pink',
-        'foreground',
-      ],
+      color: ['violet'],
       class: 'bg-clip-text text-transparent bg-gradient-to-b',
     },
   ],
+});
+export const header = tv({
+  base: 'text-2xl font-semibold',
+  variants: {
+    color: {
+      default: 'text-default',
+    },
+  },
+});
+
+export const text = tv({
+  base: 'text-sm',
+  variants: {
+    color: {
+      black: 'text-black',
+      default: 'text-default-600',
+    },
+  },
+  defaultVariants: {
+    color: 'black',
+  },
 });
 
 export const subtitle = tv({

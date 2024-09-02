@@ -5,15 +5,15 @@ export const siteConfig = {
   navMenuItems: [
     {
       label: 'Profile',
-      href: '/bookquest/profile',
+      href: '/profile',
     },
     {
       label: 'Search',
-      href: '/bookquest/search',
+      href: '/search',
     },
     {
       label: 'Projects',
-      href: '/bookquest/projects',
+      href: '/projects',
     },
     {
       label: 'Bookshelf',

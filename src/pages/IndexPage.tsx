@@ -30,7 +30,7 @@ export const IndexPage = () => {
               color="primary"
               variant="shadow"
               onPress={() => {
-                navigate('/bookquest/search');
+                navigate('/search');
               }}
             >
               Get Started
