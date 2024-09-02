@@ -26,13 +26,13 @@ interface Props {
 const AuthProvider: FC<Props> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
     getCookie('access_token_cookie') !== null &&
-      getCookie('access_token_cookie') !== '',
+      getCookie('access_token_cookie') !== ''
   );
 
   const login = async () => {
     setIsAuthenticated(
       getCookie('access_token_cookie') !== null &&
-        getCookie('access_token_cookie') !== '',
+        getCookie('access_token_cookie') !== ''
     );
   };
 
@@ -41,7 +41,7 @@ const AuthProvider: FC<Props> = ({ children }) => {
   };
   const value = useMemo(
     () => ({ isAuthenticated, login, logout }),
-    [isAuthenticated],
+    [isAuthenticated]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

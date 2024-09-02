@@ -16,42 +16,32 @@ the instructions on the [official website](https://github.com/nvm-sh/nvm).
 
 ### Package Manager
 
-This repository uses `pnpm` as the package manager. You can use `corepack` to install `pnpm`. It will automatically
-install `pnpm` and use the correct version of `pnpm` for the project.
+This repository uses `yarn` as the package manager. You can use `corepack` to install `yarn`. It will automatically
+install `yarn` and use the correct version of `yarn` for the project.
 
 ```bash
 corepack enable
 ```
 
 ### Install dependencies
+
 Before running the development server, you need to install the dependencies.
 
 ```bash
-pnpm install
+yarn
 ```
 
 ### Run the development server
 
 ```bash
-pnpm run dev
+yarn run dev
 ```
 
 ### Run tests
-    
-```bash
-pnpm run test
-```
-
-### Setup pnpm (optional)
-
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
 
 ```bash
-public-hoist-pattern[]=*@nextui-org/*
+yarn run test
 ```
-
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed
-correctly.
 
 ## License
 
