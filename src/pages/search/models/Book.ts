@@ -17,3 +17,5 @@ export interface Book {
 
 export const getIsbn = (book: Book): string =>
   book.isbn_13 !== '' ? book.isbn_13 : book.isbn_10;
+
+export const getLanguage = (book: Book): string => book.language;

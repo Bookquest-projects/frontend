@@ -8,6 +8,7 @@ import { ReviewsCard } from '@/pages/search/books/ReviewsCard.tsx';
 import { BooksComponent } from '@/pages/search/books/BooksComponent.tsx';
 import {
   useBookByAuthorQuery,
+  useBookBySeriesQuery,
   useBookRecommendationsQuery,
   useReviewsQuery,
 } from '@/pages/search/books/queries/BooksQueryHooks.ts';
@@ -30,12 +31,13 @@ export const BookPage: FC<Props> = ({ book }) => {
     data: recommendedBooks,
     isError: isRecommendedBooksError,
     isPending: isRecommendedBooksPending,
-  } = useBookRecommendationsQuery(getIsbn(book));
+  } = useBookRecommendationsQuery(getIsbn(book), book.language);
+
   const {
     data: seriesBooks,
     isError: isSeriesBooksError,
     isPending: isSeriesBooksPending,
-  } = useBookRecommendationsQuery(getIsbn(book));
+  } = useBookBySeriesQuery(getIsbn(book));
 
   return (
     <div className="flex flex-col gap-4">

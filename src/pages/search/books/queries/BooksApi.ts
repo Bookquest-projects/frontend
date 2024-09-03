@@ -27,25 +27,36 @@ const postScan = (formData: FormData): Promise<Book> =>
 
 const getBookRecommendations = (isbn: string): Promise<Book[]> =>
   baseAxios
-    .get<Book[]>(`${BASE_API}/recommendations/${isbn}`, {
+    .get<Book[]>(`${BASE_API}/${isbn}/recommendations`, {
       headers: {
         'Content-Type': 'application/json',
       },
     })
     .then((response) => response.data);
 
-const getBookByAuthor = (author: string): Promise<Book[]> =>
-  baseAxios
-    .get<Book[]>(`${BASE_API}/books/${author}`, {
+const getBookByAuthor = (
+  author: string,
+  language?: string
+): Promise<Book[]> => {
+  const url = language
+    ? `${BASE_API}/authors/${author}?lang=${language}`
+    : `${BASE_API}/authors/${author}`;
+
+  return baseAxios
+    .get<Book[]>(url, {
       headers: {
         'Content-Type': 'application/json',
       },
     })
-    .then((response) => response.data);
+    .then((response) => response.data)
+    .catch((error) => {
+      throw error;
+    });
+};
 
 const getBooksBySeries = (isbn: string): Promise<Book[]> =>
   baseAxios
-    .get<Book[]>(`${BASE_API}/books/series/${isbn}`, {
+    .get<Book[]>(`${BASE_API}/${isbn}/series`, {
       headers: {
         'Content-Type': 'application/json',
       },

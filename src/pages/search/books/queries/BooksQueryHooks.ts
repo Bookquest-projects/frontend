@@ -21,7 +21,7 @@ export const useBookMutation = () => {
   });
 };
 
-export const useBookRecommendationsQuery = (isbn: string) => {
+export const useBookRecommendationsQuery = (isbn: string, language: string) => {
   return useQuery<Book[], AxiosError>({
     queryKey: BooksQueryKeys.bookRecommendations(isbn),
     queryFn: () => BooksApi.getBookRecommendations(isbn),
