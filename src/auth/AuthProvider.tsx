@@ -3,6 +3,7 @@ import {
   FC,
   ReactNode,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from 'react';
@@ -29,20 +30,26 @@ const AuthProvider: FC<Props> = ({ children }) => {
       getCookie('access_token_cookie') !== ''
   );
 
-  const login = async () => {
-    setIsAuthenticated(
-      getCookie('access_token_cookie') !== null &&
-        getCookie('access_token_cookie') !== ''
-    );
+  const login = () => {
+    setIsAuthenticated(true);
   };
 
   const logout = () => {
     setIsAuthenticated(false);
   };
+
   const value = useMemo(
     () => ({ isAuthenticated, login, logout }),
     [isAuthenticated]
   );
+
+  useEffect(() => {
+    if (getCookie('access_token_cookie') === null) {
+      logout();
+    } else {
+      login();
+    }
+  }, [getCookie('access_token_cookie')]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

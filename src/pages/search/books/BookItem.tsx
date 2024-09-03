@@ -3,15 +3,21 @@ import { Card, CardHeader, Image, Tooltip } from '@nextui-org/react';
 import { Heart } from 'lucide-react';
 import { Button } from '@nextui-org/button';
 
-import { Book } from '@/pages/search/models/Book.ts';
+import { Book, getIsbn } from '@/pages/search/models/Book.ts';
 import { Rating } from '@/shared/Rating.tsx';
 import { BookCard } from '@/pages/search/books/BookCard.tsx';
+import { useAddToFavoritesMutation } from '@/pages/search/books/queries/BooksQueryHooks.ts';
 
 interface Props {
   book: Book;
 }
 
 export const BookItem: FC<Props> = ({ book }) => {
+  const { mutate: addToFavorites } = useAddToFavoritesMutation();
+  const handleAddToFavorites = () => {
+    addToFavorites(getIsbn(book));
+  };
+
   return (
     <Tooltip
       className="max-w-sm"
@@ -35,7 +41,12 @@ export const BookItem: FC<Props> = ({ book }) => {
                   src={book.image_link}
                 />
                 <div className=" absolute top-0 right-0 z-10 p-1">
-                  <Button isIconOnly className="bg-pink-500" size="sm">
+                  <Button
+                    isIconOnly
+                    className="bg-pink-500"
+                    size="sm"
+                    onPress={handleAddToFavorites}
+                  >
                     <Heart />
                   </Button>
                 </div>

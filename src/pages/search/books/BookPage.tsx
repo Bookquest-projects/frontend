@@ -54,7 +54,7 @@ export const BookPage: FC<Props> = ({ book }) => {
           ) : null}
         </div>
       </div>
-      <div className="flex w-full flex-col">
+      <div className="flex w-full flex-col gap-8">
         <Tabs>
           <Tab key="photos" title="Suggestions">
             {isRecommendedBooksError ? (

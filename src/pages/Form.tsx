@@ -14,9 +14,17 @@ interface Props {
   text: string;
   // eslint-disable-next-line no-unused-vars
   submit: (usernameValue: string, passwordValue: string) => void;
+  isPending?: boolean;
 }
 
-export const Form: FC<Props> = ({ title, link, linkText, text, submit }) => {
+export const Form: FC<Props> = ({
+  title,
+  link,
+  linkText,
+  text,
+  submit,
+  isPending,
+}) => {
   const [usernameValue, setUsernameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [isNameInvalid, setIsNameInvalid] = useState(false);
@@ -143,6 +151,7 @@ export const Form: FC<Props> = ({ title, link, linkText, text, submit }) => {
                       usernameValue === '' ||
                       passwordValue === ''
                     }
+                    isLoading={isPending}
                     onPress={() => {
                       submit(usernameValue, passwordValue);
                     }}

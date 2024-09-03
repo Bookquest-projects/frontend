@@ -35,10 +35,10 @@ export const BookshelfPage = () => {
 
   return (
     <DefaultLayout>
-      {!isAuthenticated ? (
-        <section className="flex py-24">
-          <div className="flex flex-col">
-            <Tabs size="lg">
+      {isAuthenticated ? (
+        <section className="flex py-8">
+          <div className="flex flex-col gap-8">
+            <Tabs color="primary" size="lg">
               <Tab key="owned" title="Owned">
                 {isLoadingOwned ? (
                   <BookSkeletons isPending={isLoadingOwned} />

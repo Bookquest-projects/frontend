@@ -6,7 +6,7 @@ import { Form } from '@/pages/Form.tsx';
 
 export const SignUp = () => {
   const { login } = useAuth();
-  const { mutate } = useRegisterMutation();
+  const { mutate, isPending } = useRegisterMutation();
 
   const navigate = useNavigate();
 
@@ -27,6 +27,7 @@ export const SignUp = () => {
 
   return (
     <Form
+      isPending={isPending}
       link="/login"
       linkText="Login"
       submit={submit}

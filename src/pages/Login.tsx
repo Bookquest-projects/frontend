@@ -1,13 +1,20 @@
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 import { useAuth } from '@/auth/AuthProvider.tsx';
 import { useLoginMutation } from '@/auth/queries/AuthQueryHooks.ts';
 import { Form } from '@/pages/Form.tsx';
 
 export const Login = () => {
-  const { login } = useAuth();
+  const { isAuthenticated, login } = useAuth();
 
-  const { mutate } = useLoginMutation();
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/');
+    }
+  }, []);
+
+  const { mutate, isPending } = useLoginMutation();
   const navigate = useNavigate();
   const submit = (usernameValue: string, passwordValue: string) => {
     mutate(
@@ -26,6 +33,7 @@ export const Login = () => {
 
   return (
     <Form
+      isPending={isPending}
       link="/sign-up"
       linkText="Sign up"
       submit={submit}
