@@ -6,14 +6,17 @@ import { getCookie } from '@/shared/cookies.ts';
 const BASE_API = import.meta.env.VITE_API_ENDPOINT + '/auth';
 
 axios.defaults.withCredentials = true;
-
 const baseAxios = axios.create({
   baseURL: BASE_API,
 });
 
 const login = (userRequest: UserRequest): Promise<UserResponse> =>
   baseAxios
-    .post<UserResponse>(`/login`, userRequest)
+    .post<UserResponse>(`/login`, userRequest, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
     .then((response) => response.data)
     .catch((error) => {
       throw error;
@@ -26,6 +29,7 @@ const logout = (): Promise<any> =>
       {},
       {
         headers: {
+          'Content-Type': 'application/json',
           'X-CSRF-TOKEN': getCookie('csrf_access_token'),
         },
       }

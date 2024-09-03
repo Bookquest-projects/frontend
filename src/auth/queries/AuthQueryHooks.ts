@@ -9,6 +9,17 @@ import { UserRequest, UserResponse } from '@/auth/models/AuthModels.ts';
 export const useLoginMutation = () => {
   return useMutation<UserResponse, AxiosError, UserRequest>({
     mutationFn: (userRequest: UserRequest) => AuthApi.login(userRequest),
+    onError: (error) => {
+      if (error.response?.status === 401) {
+        toast.error('Failed to login', {
+          position: 'top-right',
+        });
+      } else if (error.response?.status === 403) {
+        toast.error('Account not found', {
+          position: 'top-right',
+        });
+      }
+    },
   });
 };
 

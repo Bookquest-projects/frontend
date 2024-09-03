@@ -90,7 +90,7 @@ export const IndexPage = () => {
           <FeatureWrapper
             description="Dive into your next read and begin your new adventure"
             featureTitle="Enjoy"
-            image="https://img.freepik.com/free-vector/summer-gradient-reading-books-illustration_23-2149455695.jpg?t=st=1724677264~exp=1724680864~hmac=2794631eeea5ea10bf4a211bf49639c88923da383574ae08c9479b04ce095ee3&w=1060"
+            image="https://img.freepik.com/free-vector/summer-gradient-reading-books-illustration_23-2149455697.jpg?t=st=1725304607~exp=1725308207~hmac=3f163069f97d1d597b16e9c651f747ecb85ea1badf27d102bc3f3ec9ac2d3430&w=1060"
           />
         </div>
       </section>

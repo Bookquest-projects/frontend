@@ -9,7 +9,7 @@ interface Props {
 
 export const BooksComponent: FC<Props> = ({ books }) => {
   return (
-    <div className="flex gap-8 p-4">
+    <div className="flex gap-8 p-4 flex-wrap">
       {books.map((book) => (
         <BookItem key={getIsbn(book)} book={book} />
       ))}

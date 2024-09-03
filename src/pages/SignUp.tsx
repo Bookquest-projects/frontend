@@ -1,21 +1,15 @@
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
 import { useAuth } from '@/auth/AuthProvider.tsx';
-import { useLoginMutation } from '@/auth/queries/AuthQueryHooks.ts';
+import { useRegisterMutation } from '@/auth/queries/AuthQueryHooks.ts';
 import { Form } from '@/pages/Form.tsx';
 
-export const Login = () => {
-  const { isAuthenticated, login } = useAuth();
+export const SignUp = () => {
+  const { login } = useAuth();
+  const { mutate, isPending } = useRegisterMutation();
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate('/');
-    }
-  }, []);
-
-  const { mutate, isPending } = useLoginMutation();
   const navigate = useNavigate();
+
   const submit = (usernameValue: string, passwordValue: string) => {
     mutate(
       {
@@ -34,11 +28,11 @@ export const Login = () => {
   return (
     <Form
       isPending={isPending}
-      link="/sign-up"
-      linkText="Sign up"
+      link="/login"
+      linkText="Login"
       submit={submit}
-      text="Need to create an account?"
-      title="Login"
+      text="Already have an account?"
+      title="Sign Up"
     />
   );
 };
