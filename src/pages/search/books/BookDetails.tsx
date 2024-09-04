@@ -11,8 +11,18 @@ interface Props {
 export const BookDetails: FC<Props> = ({ book }) => (
   <div className="col-span-2">
     <div className="grid md:grid-cols-4 md:pb-8 gap-8">
-      <div className="flex content-center">
-        <Image alt={book.title} removeWrapper={true} src={book.image_link} />
+      <div className="flex flex-grow">
+        <Image
+          alt={book.title}
+          className="flex justify-start max-h-[264px]"
+          fallbackSrc="https://placehold.co/150x200?text=No+Image"
+          removeWrapper={true}
+          src={
+            book.image_link === ''
+              ? 'https://placehold.co/150x200?text=No+Image'
+              : book.image_link
+          }
+        />
       </div>
       <BookCard book={book} />
     </div>

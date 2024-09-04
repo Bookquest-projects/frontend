@@ -20,6 +20,10 @@ export const useBookMutation = () => {
         toast.error('Not a valid ISBN', {
           position: 'top-right',
         });
+      } else {
+        toast.error('Failed to fetch book', {
+          position: 'top-right',
+        });
       }
     },
   });
@@ -33,14 +37,14 @@ export const useBookQuery = (isbn: string) => {
 
 export const useBookRecommendationsQuery = (isbn: string, language: string) => {
   return useQuery<Book[], AxiosError>({
-    queryKey: BooksQueryKeys.bookRecommendations(isbn),
+    queryKey: BooksQueryKeys.bookRecommendations(isbn, language),
     queryFn: () => BooksApi.getBookRecommendations(isbn, language),
   });
 };
 
 export const useBookByAuthorQuery = (author: string, language?: string) => {
   return useQuery<Book[], AxiosError>({
-    queryKey: BooksQueryKeys.bookByAuthor(author),
+    queryKey: BooksQueryKeys.bookByAuthor(author, language),
     queryFn: () => BooksApi.getBookByAuthor(author, language),
   });
 };

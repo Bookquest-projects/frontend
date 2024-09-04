@@ -1,9 +1,10 @@
 const BooksQueryKeys = {
   book: (isbn?: string) => ['book', isbn] as const,
   books: () => ['books'] as const,
-  bookRecommendations: (isbn?: string) =>
-    ['book-recommendations', isbn] as const,
-  bookByAuthor: (author?: string) => ['book-by-author', author] as const,
+  bookRecommendations: (isbn?: string, language?: string) =>
+    ['book-recommendations', isbn, language] as const,
+  bookByAuthor: (author?: string, language?: string) =>
+    ['book-by-author', author, language] as const,
   booksBySeries: (isbn?: string) => ['books-by-series', isbn] as const,
   reviews: (isbn?: string) => ['reviews', isbn] as const,
   bookshelf: (name?: string) => ['bookshelf', name] as const,

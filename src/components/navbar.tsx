@@ -29,7 +29,11 @@ export const Navbar = () => {
   const navigate = useNavigate();
 
   return (
-    <NextUINavbar maxWidth="2xl" position="static">
+    <NextUINavbar
+      className="bg-gradient-to-r from-yellow-200 to-yellow-50"
+      maxWidth="2xl"
+      position="static"
+    >
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand className="gap-4">
           <Link
@@ -60,7 +64,6 @@ export const Navbar = () => {
         ) : (
           <Button
             color="secondary"
-            variant="shadow"
             onClick={() => {
               navigate('/login');
             }}

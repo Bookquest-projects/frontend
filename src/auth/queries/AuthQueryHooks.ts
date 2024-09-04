@@ -18,6 +18,10 @@ export const useLoginMutation = () => {
         toast.error('Account not found', {
           position: 'top-right',
         });
+      } else {
+        toast.error('Failed to login', {
+          position: 'top-right',
+        });
       }
     },
   });
@@ -42,10 +46,16 @@ export const useRegisterMutation = () => {
     onSuccess: async () => {
       queryClient.clear();
     },
-    onError: () => {
-      toast.error('Failed to register', {
-        position: 'top-right',
-      });
+    onError: (error) => {
+      if (error.response?.status === 409) {
+        toast.error('User already exists', {
+          position: 'top-right',
+        });
+      } else {
+        toast.error('Failed to register', {
+          position: 'top-right',
+        });
+      }
     },
   });
 };

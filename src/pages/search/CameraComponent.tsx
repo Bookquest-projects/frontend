@@ -51,12 +51,14 @@ export const CameraComponent: FC<Props> = ({ onClose }) => {
       {image ? (
         <img alt="webcam" className="rounded-lg w-full h-full" src={image} />
       ) : (
-        <Webcam
-          ref={webcamRef}
-          audio={false}
-          screenshotFormat="image/jpeg"
-          videoConstraints={videoConstraints}
-        />
+        <div className="flex max-h-[calc(100dvh-8rem)] justify-center">
+          <Webcam
+            ref={webcamRef}
+            audio={false}
+            screenshotFormat="image/jpeg"
+            videoConstraints={videoConstraints}
+          />
+        </div>
       )}
       <div className="flex justify-center gap-8 flex-grow">
         {image ? (

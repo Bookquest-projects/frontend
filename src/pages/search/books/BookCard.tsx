@@ -1,13 +1,14 @@
 import { Button } from '@nextui-org/button';
 import { ChevronDown, HeartIcon } from 'lucide-react';
 import {
+  Chip,
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
   Tooltip,
 } from '@nextui-org/react';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import clsx from 'clsx';
 
 import { Rating } from '@/shared/Rating.tsx';
@@ -27,6 +28,7 @@ export const BookCard: FC<Props> = ({ book }) => {
   const { mutate: addToFavorites } = useAddToFavoritesMutation();
   const { mutate: addToBookshelf } = useAddToBookshelfMutation();
 
+  const [showMore, setShowMore] = useState(false);
   const handleAddToFavorites = () => {
     addToFavorites(getIsbn(book));
   };
@@ -40,10 +42,22 @@ export const BookCard: FC<Props> = ({ book }) => {
         <div className="flex flex-col">
           <p className="text text-bold">{book.title}</p>
           <p className="text text-sm text-default-500">
-            {book.authors.map((author) => (
-              <div key={author}>{author}</div>
-            ))}
+            {book.authors.join(', ')}
           </p>
+          <div className="py-2">
+            {book.categories.map((categorie) => (
+              <Chip
+                key={categorie}
+                classNames={{
+                  base: 'bg-gradient-to-br from-indigo-500 to-pink-500 border-small border-white/50 shadow-pink-500/30',
+                  content: 'drop-shadow shadow-black text-white',
+                }}
+                size="sm"
+              >
+                {categorie}
+              </Chip>
+            ))}
+          </div>
         </div>
         <div className="flex flex-col">
           {book.average_rating !== '' ? (
@@ -61,13 +75,27 @@ export const BookCard: FC<Props> = ({ book }) => {
           )}
         </div>
       </div>
-      <p className="line-clamp-5 text-justify text-sm">{book.description}</p>
-      <div className="flex gap-4">
-        <Tooltip
-          content={
-            isAuthenticated ? 'Add to favorites' : 'Login to add to favorites'
-          }
+      <div>
+        {showMore ? (
+          <p className="text-justify text-sm">{book.description}</p>
+        ) : (
+          <p className="line-clamp-5 text-justify text-sm">
+            {book.description}
+          </p>
+        )}
+        <Button
+          className="data-[hover=true]:bg-transparent group-data-[selected=true]:bg-transparent p-0 m-0 gap-0"
+          color="secondary"
+          radius="full"
+          size="sm"
+          variant="light"
+          onPress={() => setShowMore(!showMore)}
         >
+          {showMore ? 'Show less' : 'Show more'}
+        </Button>
+      </div>
+      <div className="flex gap-4">
+        <Tooltip content="Login to add to favorites" hidden={isAuthenticated}>
           <div className={clsx('cursor-pointer')}>
             <Button
               isIconOnly
@@ -79,7 +107,7 @@ export const BookCard: FC<Props> = ({ book }) => {
             </Button>
           </div>
         </Tooltip>
-        <Tooltip content="Login to add to favorites" hidden={isAuthenticated}>
+        <Tooltip content="Login to add to bookshelf" hidden={isAuthenticated}>
           <div className={clsx('cursor-pointer')}>
             <Dropdown isDisabled={!isAuthenticated}>
               <DropdownTrigger>
@@ -97,28 +125,24 @@ export const BookCard: FC<Props> = ({ book }) => {
               <DropdownMenu>
                 <DropdownItem
                   key="owned"
-                  isDisabled={!isAuthenticated}
                   onPress={() => handleAddToBookshelf('owned')}
                 >
                   Owned
                 </DropdownItem>
                 <DropdownItem
                   key="reading"
-                  isDisabled={!isAuthenticated}
                   onPress={() => handleAddToBookshelf('reading')}
                 >
                   Reading
                 </DropdownItem>
                 <DropdownItem
                   key="unfinished"
-                  isDisabled={!isAuthenticated}
                   onPress={() => handleAddToBookshelf('unfinished')}
                 >
                   Unfinished
                 </DropdownItem>
                 <DropdownItem
                   key="unwanted"
-                  isDisabled={!isAuthenticated}
                   onPress={() => handleAddToBookshelf('unwanted')}
                 >
                   Unwanted
