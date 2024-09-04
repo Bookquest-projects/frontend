@@ -109,6 +109,27 @@ export const useAddToFavoritesMutation = () => {
   });
 };
 
+export const useAddToOwnedMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation<void, AxiosError, string>({
+    mutationFn: (isbn: string) => BooksApi.addToOwned(isbn),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: BooksQueryKeys.books(),
+      });
+      toast.success('Added to owned books', {
+        position: 'top-right',
+      });
+    },
+    onError: () => {
+      toast.error('Failed to add to owned books', {
+        position: 'top-right',
+      });
+    },
+  });
+};
+
 export const useAddToBookshelfMutation = () => {
   const queryClient = useQueryClient();
 

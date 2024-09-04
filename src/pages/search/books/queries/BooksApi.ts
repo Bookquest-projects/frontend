@@ -141,6 +141,24 @@ const addToFavorites = (isbn: string): Promise<void> =>
       throw error;
     });
 
+const addToOwned = (isbn: string): Promise<void> =>
+  baseAxios
+    .post(
+      `${BASE_API}/owned/${isbn}`,
+      {},
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': getCookie('csrf_access_token'),
+        },
+        withCredentials: true,
+      }
+    )
+    .then((response) => response.data)
+    .catch((error) => {
+      throw error;
+    });
+
 const BooksApi = {
   postScan,
   getBookByIsbn,
@@ -151,6 +169,7 @@ const BooksApi = {
   getBookshelf,
   addToBookshelf,
   addToFavorites,
+  addToOwned,
 };
 
 export default BooksApi;
