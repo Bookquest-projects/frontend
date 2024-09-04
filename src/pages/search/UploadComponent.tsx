@@ -56,7 +56,13 @@ export const UploadComponent: FC<Props> = ({ setBook, onClose }) => {
       alt={file.name}
       className="mx-auto"
       src={URL.createObjectURL(file)}
-      style={{ width: '50%', height: '50%', borderRadius: '0.5rem' }}
+      style={{
+        width: '50%',
+        height: '50%',
+        borderRadius: '0.5rem',
+        objectFit: 'contain',
+        maxHeight: '300px',
+      }}
     />
   );
 
@@ -70,39 +76,47 @@ export const UploadComponent: FC<Props> = ({ setBook, onClose }) => {
               Send
             </Button>
             <Button onClick={() => setFile(null)}>Re-Select</Button>
+            <Button color="danger" onClick={onClose}>
+              Cancel
+            </Button>
           </div>
         </>
       ) : (
-        <div className="flex flex-col gap-4">
-          <div className="flex justify-center w-full h-64 px-4 transition bg-default-100 border-2 border-default-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
-            <div className="flex items-center space-x-2">
-              <div {...getRootProps({ className: 'dropzone' })}>
-                <input {...getInputProps()} />
-                <span className="flex items-center space-x-2">
-                  <UploadIcon className="text-default-500" />
-                  <span className="font-medium text-default-500">
-                    Drop or click to upload
+        <div className="flex gap-2">
+          <div className="flex justify-center w-full h-64 transition bg-default-100 border-2 border-default-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
+            <div className="flex flex-grow">
+              <div className="flex justify-center flex-grow items-center space-x-2">
+                <div {...getRootProps({ className: 'dropzone' })}>
+                  <input {...getInputProps()} />
+                  <span className="flex items-center space-x-2">
+                    <UploadIcon className="text-default-500" />
+                    <span className="font-medium text-default-500">
+                      Drop or click to upload
+                    </span>
+                    <span className="text-danger">(png, jpeg)</span>
                   </span>
-                  <span className="text-danger">(png, jpeg)</span>
-                </span>
+                </div>
               </div>
             </div>
+            <div className="flex p-2">
+              <Button
+                isIconOnly
+                className="w-6 h-6 p-0 m-0 flex-shrink-0 gap-0 min-w-4"
+                color="danger"
+                radius="full"
+                size="sm"
+                onClick={onClose}
+              >
+                <XIcon className="w-4 h-4" />
+              </Button>
+            </div>
           </div>
+
           {fileRejections.length > 0 ? (
             <p className="text-danger text-center">File type not accepted</p>
           ) : null}
         </div>
       )}
-      <Button
-        className="flex-shrink-1"
-        endContent={<XIcon />}
-        onClick={() => {
-          setFile(null);
-          onClose();
-        }}
-      >
-        Close
-      </Button>
     </div>
   );
 };

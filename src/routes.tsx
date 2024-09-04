@@ -6,6 +6,7 @@ import { Login } from '@/pages/Login.tsx';
 import { ErrorPage } from '@/pages/ErrorPage.tsx';
 import { SignUp } from '@/pages/SignUp.tsx';
 import { BookshelfPage } from '@/pages/bookshelf/BookshelfPage.tsx';
+import { BookPage } from '@/pages/search/books/BookPage.tsx';
 
 export const routes = createBrowserRouter([
   {
@@ -36,5 +37,10 @@ export const routes = createBrowserRouter([
   {
     path: '*',
     element: <ErrorPage />,
+  },
+  {
+    path: '/book/:isbn',
+    element: <BookPage />,
+    errorElement: <ErrorPage />,
   },
 ]);

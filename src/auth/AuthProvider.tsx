@@ -7,6 +7,7 @@ import {
   useMemo,
   useState,
 } from 'react';
+import { toast } from 'react-toastify';
 
 import { getCookie } from '@/shared/cookies.ts';
 
@@ -44,7 +45,13 @@ const AuthProvider: FC<Props> = ({ children }) => {
   );
 
   useEffect(() => {
-    if (getCookie('access_token_cookie') === null) {
+    if (
+      getCookie('access_token_cookie') === null ||
+      getCookie('access_token_cookie') === ''
+    ) {
+      if (isAuthenticated) {
+        toast.warning('You have been logged out');
+      }
       logout();
     } else {
       login();
