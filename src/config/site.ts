@@ -12,10 +12,6 @@ export const siteConfig = {
       href: '/search',
     },
     {
-      label: 'Projects',
-      href: '/projects',
-    },
-    {
       label: 'Bookshelf',
       href: '/bookshelf',
     },

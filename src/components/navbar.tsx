@@ -21,7 +21,6 @@ import { ThemeSwitch } from '@/components/theme-switch';
 import { GithubIcon, Logo } from '@/components/icons';
 import { useAuth } from '@/auth/AuthProvider.tsx';
 import { UserCard } from '@/components/UserCard.tsx';
-import { SearchInput } from '@/components/SearchInput.tsx';
 
 export const Navbar = () => {
   const { isAuthenticated } = useAuth();
@@ -30,11 +29,12 @@ export const Navbar = () => {
 
   return (
     <NextUINavbar
-      className="bg-gradient-to-r from-yellow-200 to-yellow-50"
+      className="bg-gradient-to-r from-primary-500 to-[#ffffff] dark:from-primary"
       maxWidth="2xl"
       position="static"
     >
-      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
+      <NavbarContent justify="center">
+        <NavbarMenuToggle />
         <NavbarBrand className="gap-4">
           <Link
             className="flex justify-start items-center gap-1"
@@ -46,8 +46,7 @@ export const Navbar = () => {
           </Link>
         </NavbarBrand>
       </NavbarContent>
-
-      <NavbarContent className="basis-1 pl-4" justify="end">
+      <NavbarContent justify="end">
         <Link to={siteConfig.links.github}>
           <GithubIcon className="text-foreground" />
         </Link>
@@ -71,11 +70,8 @@ export const Navbar = () => {
             <p>Login</p>
           </Button>
         )}
-        <NavbarMenuToggle />
       </NavbarContent>
-
       <NavbarMenu>
-        <SearchInput />
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>

@@ -21,9 +21,10 @@ import { useAuth } from '@/auth/AuthProvider.tsx';
 
 interface Props {
   book: Book;
+  actions?: boolean;
 }
 
-export const BookCard: FC<Props> = ({ book }) => {
+export const BookCard: FC<Props> = ({ book, actions = true }) => {
   const { isAuthenticated } = useAuth();
   const { mutate: addToFavorites } = useAddToFavoritesMutation();
   const { mutate: addToBookshelf } = useAddToBookshelfMutation();
@@ -95,62 +96,66 @@ export const BookCard: FC<Props> = ({ book }) => {
         </Button>
       </div>
       <div className="flex gap-4">
-        <Tooltip content="Login to add to favorites" hidden={isAuthenticated}>
-          <div className={clsx('cursor-pointer')}>
-            <Button
-              isIconOnly
-              className="bg-pink-500"
-              isDisabled={!isAuthenticated}
-              onPress={handleAddToFavorites}
-            >
-              <HeartIcon />
-            </Button>
-          </div>
-        </Tooltip>
-        <Tooltip content="Login to add to bookshelf" hidden={isAuthenticated}>
-          <div className={clsx('cursor-pointer')}>
-            <Dropdown isDisabled={!isAuthenticated}>
-              <DropdownTrigger>
-                <Button
-                  color="primary"
-                  endContent={
-                    <div>
-                      <ChevronDown />
-                    </div>
-                  }
-                >
-                  Add to bookshelf
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu>
-                <DropdownItem
-                  key="owned"
-                  onPress={() => handleAddToBookshelf('owned')}
-                >
-                  Owned
-                </DropdownItem>
-                <DropdownItem
-                  key="reading"
-                  onPress={() => handleAddToBookshelf('reading')}
-                >
-                  Reading
-                </DropdownItem>
-                <DropdownItem
-                  key="unfinished"
-                  onPress={() => handleAddToBookshelf('unfinished')}
-                >
-                  Unfinished
-                </DropdownItem>
-                <DropdownItem
-                  key="unwanted"
-                  onPress={() => handleAddToBookshelf('unwanted')}
-                >
-                  Unwanted
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </div>
-        </Tooltip>
+        {actions ? (
+          <Tooltip content="Login to add to favorites" hidden={isAuthenticated}>
+            <div className={clsx('cursor-pointer')}>
+              <Button
+                isIconOnly
+                className="bg-pink-500"
+                isDisabled={!isAuthenticated}
+                onPress={handleAddToFavorites}
+              >
+                <HeartIcon />
+              </Button>
+            </div>
+          </Tooltip>
+        ) : null}
+        {actions ? (
+          <Tooltip content="Login to add to bookshelf" hidden={isAuthenticated}>
+            <div className={clsx('cursor-pointer')}>
+              <Dropdown isDisabled={!isAuthenticated}>
+                <DropdownTrigger>
+                  <Button
+                    color="primary"
+                    endContent={
+                      <div>
+                        <ChevronDown />
+                      </div>
+                    }
+                  >
+                    Add to bookshelf
+                  </Button>
+                </DropdownTrigger>
+                <DropdownMenu>
+                  <DropdownItem
+                    key="owned"
+                    onPress={() => handleAddToBookshelf('owned')}
+                  >
+                    Owned
+                  </DropdownItem>
+                  <DropdownItem
+                    key="reading"
+                    onPress={() => handleAddToBookshelf('reading')}
+                  >
+                    Reading
+                  </DropdownItem>
+                  <DropdownItem
+                    key="unfinished"
+                    onPress={() => handleAddToBookshelf('unfinished')}
+                  >
+                    Unfinished
+                  </DropdownItem>
+                  <DropdownItem
+                    key="unwanted"
+                    onPress={() => handleAddToBookshelf('unwanted')}
+                  >
+                    Unwanted
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </div>
+          </Tooltip>
+        ) : null}
       </div>
     </div>
   );

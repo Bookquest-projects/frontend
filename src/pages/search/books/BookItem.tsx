@@ -29,41 +29,41 @@ export const BookItem: FC<Props> = ({ book }) => {
       className="flex flex-col w-[250px] p-4 justify-center"
       onPress={() => navigate(`/book/${getIsbn(book)}`)}
     >
-      <div className="flex flex-col gap-4">
-        <div className="flex flex-grow justify-center">
-          <Image
-            alt={book.title}
-            fallbackSrc="https://placehold.co/128x163"
-            removeWrapper={true}
-            src={
-              book.image_link !== ''
-                ? book.image_link
-                : 'https://placehold.co/150x200?text=No+Image'
-            }
-          />
-          <div className=" absolute top-0 right-0 z-10 p-1">
-            <Button
-              isIconOnly
-              className="bg-pink-500"
-              isDisabled={!isAuthenticated}
-              size="sm"
-              onPress={handleAddToFavorites}
-            >
-              <Heart />
-            </Button>
-          </div>
-        </div>
-        <Tooltip
-          className="max-w-sm"
-          closeDelay={1000}
-          content={
-            <div className="flex p-4">
-              <BookCard book={book} />
-            </div>
-          }
-          delay={500}
-          placement="top"
+      <div className=" absolute top-0 right-0 z-10 p-1">
+        <Button
+          isIconOnly
+          className="bg-pink-500"
+          isDisabled={!isAuthenticated}
+          size="sm"
+          onPress={handleAddToFavorites}
         >
+          <Heart />
+        </Button>
+      </div>
+      <Tooltip
+        className="max-w-sm"
+        closeDelay={1000}
+        content={
+          <div className="flex p-4">
+            <BookCard actions={!isAuthenticated} book={book} />
+          </div>
+        }
+        delay={500}
+        placement="top"
+      >
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-grow justify-center">
+            <Image
+              alt={book.title}
+              fallbackSrc="https://placehold.co/150x200?text=No+Image"
+              removeWrapper={true}
+              src={
+                book.image_link !== ''
+                  ? book.image_link
+                  : 'https://placehold.co/150x200?text=No+Image'
+              }
+            />
+          </div>
           <div className="flex flex-col justify-start items-start">
             <div className=" text-small font-semibold text-default-600 text-left">
               {book.title}
@@ -83,8 +83,8 @@ export const BookItem: FC<Props> = ({ book }) => {
               <Rating rating={0} size={16} />
             )}
           </div>
-        </Tooltip>
-      </div>
+        </div>
+      </Tooltip>
     </Card>
   );
 };

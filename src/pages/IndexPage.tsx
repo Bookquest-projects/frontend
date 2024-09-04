@@ -52,22 +52,22 @@ export const IndexPage = () => {
             <CardWrapper
               body="Get instant recommendations for your next read"
               cardTitle="Fast"
-              icon={<RocketIcon />}
+              icon={<RocketIcon fill="#e5383b" />}
             />
             <CardWrapper
               body="Tweak the recommendations to your liking"
               cardTitle="Customize"
-              icon={<SparklesIcon />}
+              icon={<SparklesIcon color="#f0c200" />}
             />
             <CardWrapper
               body="Find all the books you need in one place"
               cardTitle="All-in-One"
-              icon={<Rotate3DIcon />}
+              icon={<Rotate3DIcon color="#2196f3" />}
             />
             <CardWrapper
               body="Easily find your reading progress"
               cardTitle="Track"
-              icon={<ChartLine />}
+              icon={<ChartLine color="#8338ec" />}
             />
           </div>
         </div>
