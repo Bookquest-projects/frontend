@@ -3,11 +3,9 @@ import {
   FC,
   ReactNode,
   useContext,
-  useEffect,
   useMemo,
   useState,
 } from 'react';
-import { toast } from 'react-toastify';
 
 import { getCookie } from '@/shared/cookies.ts';
 
@@ -44,19 +42,19 @@ const AuthProvider: FC<Props> = ({ children }) => {
     [isAuthenticated]
   );
 
-  useEffect(() => {
-    if (
-      getCookie('access_token_cookie') === null ||
-      getCookie('access_token_cookie') === ''
-    ) {
-      if (isAuthenticated) {
-        toast.warning('You have been logged out');
-      }
-      logout();
-    } else {
-      login();
-    }
-  }, [getCookie('access_token_cookie')]);
+  // useEffect(() => {
+  //   if (
+  //     getCookie('access_token_cookie') === null &&
+  //     getCookie('access_token_cookie') === ''
+  //   ) {
+  //     login();
+  //   } else {
+  //     if (isAuthenticated) {
+  //       toast.warning('You have been logged out');
+  //     }
+  //     logout();
+  //   }
+  // }, [getCookie('access_token_cookie')]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

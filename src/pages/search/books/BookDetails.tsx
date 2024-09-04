@@ -16,6 +16,7 @@ export const BookDetails: FC<Props> = ({ book }) => (
           alt={book.title}
           className="flex justify-start max-h-[264px]"
           fallbackSrc="https://placehold.co/150x200?text=No+Image"
+          radius="lg"
           removeWrapper={true}
           src={
             book.image_link === ''

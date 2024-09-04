@@ -83,6 +83,15 @@ export const Navbar = () => {
               </Link>
             </NavbarMenuItem>
           ))}
+          {isAuthenticated
+            ? siteConfig.authNavMenuItems.map((item, index) => (
+                <NavbarMenuItem key={`${item}-${index}`}>
+                  <Link color="foreground" to={item.href}>
+                    {item.label}
+                  </Link>
+                </NavbarMenuItem>
+              ))
+            : null}
         </div>
       </NavbarMenu>
     </NextUINavbar>

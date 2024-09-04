@@ -55,6 +55,7 @@ export const ScanComponent: FC<Props> = ({ onCameraClick, setBook }) => {
             </div>
           }
           label="Scan"
+          labelPlacement="outside"
           name="q"
           placeholder="ISBN, title or author"
           type="search"

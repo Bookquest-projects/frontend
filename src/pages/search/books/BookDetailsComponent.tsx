@@ -85,7 +85,7 @@ export const BookDetailsComponent: FC<Props> = ({ book }) => {
               </>
             )}
           </Tab>
-          <Tab key="videos" title="From this series">
+          <Tab key="series" isDisabled title="From this series">
             {isSeriesBooksError ? (
               <div className="text-danger text-small">
                 Could not load books by series
