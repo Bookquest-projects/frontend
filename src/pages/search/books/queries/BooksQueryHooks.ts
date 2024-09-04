@@ -24,18 +24,24 @@ export const useBookMutation = () => {
     },
   });
 };
+export const useBookQuery = (isbn: string) => {
+  return useQuery<Book, AxiosError>({
+    queryKey: BooksQueryKeys.book(isbn),
+    queryFn: () => BooksApi.getBookByIsbn(isbn),
+  });
+};
 
 export const useBookRecommendationsQuery = (isbn: string, language: string) => {
   return useQuery<Book[], AxiosError>({
     queryKey: BooksQueryKeys.bookRecommendations(isbn),
-    queryFn: () => BooksApi.getBookRecommendations(isbn),
+    queryFn: () => BooksApi.getBookRecommendations(isbn, language),
   });
 };
 
-export const useBookByAuthorQuery = (author: string) => {
+export const useBookByAuthorQuery = (author: string, language?: string) => {
   return useQuery<Book[], AxiosError>({
     queryKey: BooksQueryKeys.bookByAuthor(author),
-    queryFn: () => BooksApi.getBookByAuthor(author),
+    queryFn: () => BooksApi.getBookByAuthor(author, language),
   });
 };
 

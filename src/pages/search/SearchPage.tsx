@@ -4,7 +4,7 @@ import { DefaultLayout } from '@/layouts/default.tsx';
 import { CameraComponent } from '@/pages/search/CameraComponent.tsx';
 import { ScanComponent } from '@/pages/search/ScanComponent.tsx';
 import { Book } from '@/pages/search/models/Book.ts';
-import { BookPage } from '@/pages/search/books/BookPage.tsx';
+import { BookDetailsComponent } from '@/pages/search/books/BookDetailsComponent.tsx';
 
 export const SearchPage = () => {
   const [open, setOpen] = useState(false);
@@ -27,7 +27,7 @@ export const SearchPage = () => {
             <ScanComponent setBook={setBook} onCameraClick={onCameraClick} />
           </div>
         )}
-        {book ? <BookPage book={book} /> : null}
+        {book ? <BookDetailsComponent book={book} /> : null}
       </section>
     </DefaultLayout>
   );

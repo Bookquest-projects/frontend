@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { Card, CardHeader, Image, Tooltip } from '@nextui-org/react';
 import { Heart } from 'lucide-react';
 import { Button } from '@nextui-org/button';
+import { useNavigate } from 'react-router-dom';
 
 import { Book, getIsbn } from '@/pages/search/models/Book.ts';
 import { Rating } from '@/shared/Rating.tsx';
@@ -17,6 +18,7 @@ export const BookItem: FC<Props> = ({ book }) => {
   const handleAddToFavorites = () => {
     addToFavorites(getIsbn(book));
   };
+  const navigate = useNavigate();
 
   return (
     <Tooltip
@@ -29,16 +31,25 @@ export const BookItem: FC<Props> = ({ book }) => {
       delay={500}
       placement="top"
     >
-      <Card isHoverable className="min-w-[180px] py-4">
+      <Card
+        isHoverable
+        isPressable
+        className="w-[250px] py-4"
+        onPress={() => navigate(`/book/${getIsbn(book)}`)}
+      >
         <CardHeader className="justify-center">
           <div className="flex">
             <div className="flex flex-col gap-4 justify-center items-center">
               <div className="relative">
                 <Image
                   alt={book.title}
-                  fallbackSrc="https://placehold.co/150x200?text=Cover not found"
+                  fallbackSrc="https://placehold.co/128x163"
                   removeWrapper={true}
-                  src={book.image_link}
+                  src={
+                    book.image_link !== ''
+                      ? book.image_link
+                      : 'https://placehold.co/150x200?text=No+Image'
+                  }
                 />
                 <div className=" absolute top-0 right-0 z-10 p-1">
                   <Button

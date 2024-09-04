@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import { Book } from '@/pages/search/models/Book.ts';
 import { Review } from '@/pages/search/models/Reviews.ts';
 import { getCookie } from '@/shared/cookies.ts';
@@ -31,37 +33,38 @@ const postScan = (formData: FormData): Promise<Book> =>
       throw error;
     });
 
-const getBookRecommendations = (isbn: string): Promise<Book[]> =>
+const getBookRecommendations = (
+  isbn: string,
+  language: string
+): Promise<Book[]> =>
   baseAxios
     .get<Book[]>(`${BASE_API}/${isbn}/recommendations`, {
       headers: {
         'Content-Type': 'application/json',
       },
-    })
-    .then((response) => response.data)
-    .catch((error) => {
-      throw error;
-    });
-
-const getBookByAuthor = (
-  author: string,
-  language?: string
-): Promise<Book[]> => {
-  const url = language
-    ? `${BASE_API}/authors/${author}?lang=${language}`
-    : `${BASE_API}/authors/${author}`;
-
-  return baseAxios
-    .get<Book[]>(url, {
-      headers: {
-        'Content-Type': 'application/json',
+      params: {
+        ...(language ? { lang: language } : {}),
       },
     })
     .then((response) => response.data)
     .catch((error) => {
       throw error;
     });
-};
+
+const getBookByAuthor = (author: string, language?: string): Promise<Book[]> =>
+  baseAxios
+    .get<Book[]>(`${BASE_API}/authors/${author}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        ...(language ? { lang: language } : {}),
+      },
+    })
+    .then((response) => response.data)
+    .catch((error) => {
+      throw error;
+    });
 
 const getBooksBySeries = (isbn: string): Promise<Book[]> =>
   baseAxios
