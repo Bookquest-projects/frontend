@@ -95,8 +95,8 @@ export const BookCard: FC<Props> = ({ book, actions = true }) => {
           {showMore ? 'Show less' : 'Show more'}
         </Button>
       </div>
-      <div className="flex gap-4">
-        {actions ? (
+      {actions ? (
+        <div className="flex gap-4">
           <Tooltip content="Login to add to favorites" hidden={isAuthenticated}>
             <div className={clsx('cursor-pointer')}>
               <Button
@@ -109,8 +109,7 @@ export const BookCard: FC<Props> = ({ book, actions = true }) => {
               </Button>
             </div>
           </Tooltip>
-        ) : null}
-        {actions ? (
+
           <Tooltip content="Login to add to bookshelf" hidden={isAuthenticated}>
             <div className={clsx('cursor-pointer')}>
               <Dropdown isDisabled={!isAuthenticated}>
@@ -155,8 +154,8 @@ export const BookCard: FC<Props> = ({ book, actions = true }) => {
               </Dropdown>
             </div>
           </Tooltip>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
     </div>
   );
 };

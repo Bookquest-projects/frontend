@@ -45,7 +45,7 @@ export const BookItem: FC<Props> = ({ book }) => {
         closeDelay={1000}
         content={
           <div className="flex p-4">
-            <BookCard actions={!isAuthenticated} book={book} />
+            <BookCard actions={isAuthenticated} book={book} />
           </div>
         }
         delay={500}
