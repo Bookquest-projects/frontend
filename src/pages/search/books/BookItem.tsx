@@ -3,15 +3,21 @@ import { Card, CardHeader, Image, Tooltip } from '@nextui-org/react';
 import { Heart } from 'lucide-react';
 import { Button } from '@nextui-org/button';
 
-import { Book } from '@/pages/search/models/Book.ts';
+import { Book, getIsbn } from '@/pages/search/models/Book.ts';
 import { Rating } from '@/shared/Rating.tsx';
 import { BookCard } from '@/pages/search/books/BookCard.tsx';
+import { useAddToFavoritesMutation } from '@/pages/search/books/queries/BooksQueryHooks.ts';
 
 interface Props {
   book: Book;
 }
 
 export const BookItem: FC<Props> = ({ book }) => {
+  const { mutate: addToFavorites } = useAddToFavoritesMutation();
+  const handleAddToFavorites = () => {
+    addToFavorites(getIsbn(book));
+  };
+
   return (
     <Tooltip
       className="max-w-sm"
@@ -23,18 +29,24 @@ export const BookItem: FC<Props> = ({ book }) => {
       delay={500}
       placement="top"
     >
-      <Card isHoverable>
-        <CardHeader className="justify-between">
+      <Card isHoverable className="min-w-[180px] py-4">
+        <CardHeader className="justify-center">
           <div className="flex">
-            <div className="flex flex-col gap-4 items-start justify-center items-center">
-              <div className="relative inline-flex">
+            <div className="flex flex-col gap-4 justify-center items-center">
+              <div className="relative">
                 <Image
                   alt={book.title}
+                  fallbackSrc="https://placehold.co/150x200?text=Cover not found"
                   removeWrapper={true}
                   src={book.image_link}
                 />
                 <div className=" absolute top-0 right-0 z-10 p-1">
-                  <Button isIconOnly className="bg-pink-500" size="sm">
+                  <Button
+                    isIconOnly
+                    className="bg-pink-500"
+                    size="sm"
+                    onPress={handleAddToFavorites}
+                  >
                     <Heart />
                   </Button>
                 </div>
@@ -45,9 +57,9 @@ export const BookItem: FC<Props> = ({ book }) => {
                 </p>
 
                 <p className=" text-sm text-default-500">
-                  by{' '}
+                  by &nbsp;
                   {book.authors.map((author) => (
-                    <div key={author}>{author}</div>
+                    <span key={author}>{author}</span>
                   ))}
                 </p>
                 {book.average_rating !== '' ? (

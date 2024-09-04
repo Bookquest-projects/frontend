@@ -33,6 +33,7 @@ export const UploadComponent: FC<Props> = ({ setBook, onClose }) => {
       uploadImage(formData, {
         onSuccess: (data) => {
           setBook(data);
+          onClose();
           setFile(null);
         },
         onError: () => {

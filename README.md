@@ -45,4 +45,4 @@ yarn run test
 
 ## License
 
-Licensed under the [MIT license](https://github.com/nextui-org/vite-template/blob/main/LICENSE).
+Licensed under the [MIT license](https://github.com/Bookquest-projects/frontend/blob/main/LICENSE).

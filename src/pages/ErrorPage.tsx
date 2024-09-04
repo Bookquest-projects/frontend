@@ -9,12 +9,14 @@ export const ErrorPage = () => {
   return (
     <DefaultLayout>
       <div className="flex flex-col py-8 justify-center" id="error-page">
-        <h1>Oops!</h1>
+        <h1 className="text-2xl">Oops!</h1>
         <p>Sorry, an unexpected error has occurred.</p>
         <p className="text-danger">
-          Page {error.statusCode || error.statusText || error.message}
+          {error?.message || 'An unexpected error occurred.'}
+          {error?.status ? ` (Status: ${error.status})` : ''}
+          {error?.statusText ? ` - ${error.statusText}` : ''}
         </p>
-        <div className="flex justify-center py-8">
+        <div className="flex justify-center py-24">
           <Button>
             <a href="/">Go back to the homepage</a>
           </Button>

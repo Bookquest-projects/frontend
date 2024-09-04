@@ -23,7 +23,7 @@ export const SearchPage = () => {
         {open ? (
           <CameraComponent onClose={onClose} />
         ) : (
-          <div className="md:px-24 pt-24">
+          <div className="lg:px-48 md:px-24 pt-24">
             <ScanComponent setBook={setBook} onCameraClick={onCameraClick} />
           </div>
         )}
