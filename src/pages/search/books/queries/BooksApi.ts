@@ -6,6 +6,7 @@ import { getCookie } from '@/shared/cookies.ts';
 
 const BASE_API = import.meta.env.VITE_API_ENDPOINT + '/books';
 const BOOKSHELF_API = import.meta.env.VITE_API_ENDPOINT + '/bookshelf';
+const REVIEW_API = import.meta.env.VITE_API_ENDPOINT + '/reviews';
 
 axios.defaults.withCredentials = true;
 
@@ -80,7 +81,7 @@ const getBooksBySeries = (isbn: string): Promise<Book[]> =>
 
 const getReviews = (isbn: string): Promise<Review[]> =>
   baseAxios
-    .get<Review[]>(`${BASE_API}/reviews/${isbn}`, {
+    .get<Review[]>(`${REVIEW_API}/${isbn}`, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -108,7 +109,7 @@ const getBookshelf = (name: string): Promise<Book[]> =>
 const addToBookshelf = (isbn: string, name: string): Promise<void> =>
   baseAxios
     .post(
-      `${BOOKSHELF_API}/${isbn}`,
+      `${REVIEW_API}/${isbn}/bookshelf`,
       {
         name: name,
       },
@@ -126,7 +127,7 @@ const addToBookshelf = (isbn: string, name: string): Promise<void> =>
 const addToFavorites = (isbn: string): Promise<void> =>
   baseAxios
     .post(
-      `${BASE_API}/favorites/${isbn}`,
+      `${REVIEW_API}/${isbn}/favorites`,
       {},
       {
         headers: {
@@ -144,7 +145,7 @@ const addToFavorites = (isbn: string): Promise<void> =>
 const addToOwned = (isbn: string): Promise<void> =>
   baseAxios
     .post(
-      `${BASE_API}/owned/${isbn}`,
+      `${REVIEW_API}/${isbn}/owned`,
       {},
       {
         headers: {
