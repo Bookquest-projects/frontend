@@ -20,9 +20,5 @@ export const siteConfig = {
       label: 'Bookshelf',
       href: '/bookshelf',
     },
-    {
-      label: 'Logout',
-      href: '/logout',
-    },
   ],
 };
