@@ -17,7 +17,7 @@ interface Props {
   isPending?: boolean;
   color?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
   linkColor: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
-  isSignup: boolean;
+  isSignup?: boolean;
 }
 
 export const Form: FC<Props> = ({
