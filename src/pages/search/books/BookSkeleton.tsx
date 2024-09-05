@@ -7,7 +7,7 @@ interface Props {
 
 export const BookSkeleton: FC<Props> = ({ isPending }) => {
   return (
-    <Card className="w-[250px] h-[300px] space-y-5 p-4" radius="lg">
+    <Card className="w-[200px] h-[300px] space-y-5 p-4" radius="lg">
       <Skeleton className="rounded-lg" isLoaded={!isPending}>
         <div className="h-40 rounded-lg bg-secondary" />
       </Skeleton>

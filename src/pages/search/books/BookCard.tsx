@@ -38,8 +38,8 @@ export const BookCard: FC<Props> = ({ book, actions = true }) => {
   };
 
   return (
-    <div className="flex flex-col col-span-3 gap-4 min-w-[300px]">
-      <div className="flex justify-between">
+    <div className="flex flex-col col-span-3 gap-4 min-w-[250px]">
+      <div className="flex justify-between gap-4 flex-wrap">
         <div className="flex flex-col">
           <p className="text text-bold">{book.title}</p>
           <p className="text text-sm text-default-500">

@@ -74,7 +74,7 @@ export const Form: FC<Props> = ({
     <DefaultLayout>
       <section className="flex justify-center py-16">
         <div className="flex flex-col">
-          <Card className="max-w-full w-[400px] px-4">
+          <Card className="max-w-full sm:w-[400px] px-4">
             <CardBody className="overflow-hidden">
               <CardHeader className="flex justify-center font-semibold text-default-700">
                 {title}

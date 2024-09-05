@@ -6,7 +6,7 @@ interface Props {
   size?: number;
 }
 
-export const Rating: FC<Props> = ({ rating, size = 24 }) => {
+export const Rating: FC<Props> = ({ rating, size = 16 }) => {
   return (
     <div className="flex gap-1">
       {Array.from({ length: 5 }, (_, i) => {

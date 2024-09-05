@@ -42,7 +42,7 @@ export const Navbar = () => {
             to="/"
           >
             <Logo />
-            <p className="font-bold text-inherit">Bookquest</p>
+            <p className="font-bold text-inherit hidden sm:block">Bookquest</p>
           </Link>
         </NavbarBrand>
       </NavbarContent>

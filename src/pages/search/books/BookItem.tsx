@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Card, Image, Tooltip } from '@nextui-org/react';
+import { Card, CardBody, Image, Tooltip } from '@nextui-org/react';
 import { Heart } from 'lucide-react';
 import { Button } from '@nextui-org/button';
 import { useNavigate } from 'react-router-dom';
@@ -26,20 +26,22 @@ export const BookItem: FC<Props> = ({ book }) => {
     <Card
       isHoverable
       isPressable
-      className="flex flex-col w-[250px] p-4 justify-center"
+      className="flex w-[230px] p-4"
       onPress={() => navigate(`/book/${getIsbn(book)}`)}
     >
-      <div className=" absolute top-0 right-0 z-10 p-1">
-        <Button
-          isIconOnly
-          className="bg-pink-500"
-          isDisabled={!isAuthenticated}
-          size="sm"
-          onPress={handleAddToFavorites}
-        >
-          <Heart />
-        </Button>
-      </div>
+      <Tooltip content="Login to add to favorites">
+        <div className="absolute top-0 right-0 z-10 p-1">
+          <Button
+            isIconOnly
+            className="bg-pink-500"
+            isDisabled={!isAuthenticated}
+            size="sm"
+            onPress={handleAddToFavorites}
+          >
+            <Heart />
+          </Button>
+        </div>
+      </Tooltip>
       <Tooltip
         className="max-w-sm"
         closeDelay={1000}
@@ -51,39 +53,42 @@ export const BookItem: FC<Props> = ({ book }) => {
         delay={500}
         placement="top"
       >
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-grow justify-center">
-            <Image
-              alt={book.title}
-              fallbackSrc="https://placehold.co/150x200?text=No+Image"
-              removeWrapper={true}
-              src={
-                book.image_link !== ''
-                  ? book.image_link
-                  : 'https://placehold.co/150x200?text=No+Image'
-              }
-            />
-          </div>
-          <div className="flex flex-col justify-start items-start">
-            <div className=" text-small font-semibold text-default-600 text-left">
-              {book.title}
+        <CardBody>
+          <div className="flex flex-col flex-grow gap-4 justify-center">
+            <div className="flex justify-center">
+              <Image
+                alt={book.title}
+                className="flex"
+                fallbackSrc="https://placehold.co/150x200?text=No+Image"
+                removeWrapper={true}
+                src={
+                  book.image_link !== ''
+                    ? book.image_link
+                    : 'https://placehold.co/150x200?text=No+Image'
+                }
+              />
             </div>
+            <div className="flex flex-col flex-grow justify-start items-start">
+              <div className=" text-small font-semibold text-default-600 text-left">
+                {book.title}
+              </div>
 
-            {book.authors.length > 0 ? (
-              <p className=" text-sm text-default-500 text-left">
-                by&nbsp;
-                {book.authors.join(', ')}
-              </p>
-            ) : (
-              <p className=" text-sm text-default-500 text-left">No author</p>
-            )}
-            {book.average_rating !== '' ? (
-              <Rating rating={parseInt(book.average_rating)} size={16} />
-            ) : (
-              <Rating rating={0} size={16} />
-            )}
+              {book.authors.length > 0 ? (
+                <p className=" text-sm text-default-500 text-left">
+                  by&nbsp;
+                  {book.authors.join(', ')}
+                </p>
+              ) : (
+                <p className=" text-sm text-default-500 text-left">No author</p>
+              )}
+              {book.average_rating !== '' ? (
+                <Rating rating={parseInt(book.average_rating)} size={16} />
+              ) : (
+                <Rating rating={0} size={16} />
+              )}
+            </div>
           </div>
-        </div>
+        </CardBody>
       </Tooltip>
     </Card>
   );

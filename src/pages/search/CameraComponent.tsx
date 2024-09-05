@@ -1,17 +1,26 @@
 import { Button } from '@nextui-org/button';
 import { Image, Skeleton } from '@nextui-org/react';
 import { CameraIcon, RotateCw, Send } from 'lucide-react';
-import { FC, useCallback, useRef, useState } from 'react';
+import {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useCallback,
+  useRef,
+  useState,
+} from 'react';
 import Webcam from 'react-webcam';
 import { isMobile } from 'react-device-detect';
 
 import { useScanMutation } from '@/pages/search/books/queries/BooksQueryHooks.ts';
+import { Book } from '@/pages/search/models/Book.ts';
 
 interface Props {
   onClose: () => void;
+  setBook: Dispatch<SetStateAction<Book | null>>;
 }
 
-export const CameraComponent: FC<Props> = ({ onClose }) => {
+export const CameraComponent: FC<Props> = ({ onClose, setBook }) => {
   const [image, setImage] = useState<string | null>(null);
 
   const { mutate: uploadImage, isPending } = useScanMutation();
@@ -37,12 +46,15 @@ export const CameraComponent: FC<Props> = ({ onClose }) => {
         const formData = new FormData();
 
         formData.append('image', file);
-        uploadImage(formData);
+        uploadImage(formData, {
+          onSuccess: (data) => {
+            // @ts-ignore
+            setBook(data);
+            onClose();
+          },
+        });
       }
     }
-    setTimeout(() => {
-      onClose();
-    }, 1000);
   };
 
   return (
@@ -57,6 +69,7 @@ export const CameraComponent: FC<Props> = ({ onClose }) => {
           <Webcam
             ref={webcamRef}
             audio={false}
+            forceScreenshotSourceSize={true}
             screenshotFormat="image/jpeg"
             videoConstraints={videoConstraints}
           />

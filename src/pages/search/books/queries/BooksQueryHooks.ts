@@ -57,15 +57,8 @@ export const useBookBySeriesQuery = (isbn: string) => {
 };
 
 export const useScanMutation = () => {
-  const queryClient = useQueryClient();
-
   return useMutation<Book, AxiosError, FormData>({
     mutationFn: (formData) => BooksApi.postScan(formData),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: BooksQueryKeys.books(),
-      });
-    },
     onError: () => {
       toast.error('Failed to scan book', {
         position: 'top-right',

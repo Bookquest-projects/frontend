@@ -33,7 +33,7 @@ export const SearchPage = () => {
     <DefaultLayout>
       <section className="flex flex-col gap-8">
         {open ? (
-          <CameraComponent onClose={onClose} />
+          <CameraComponent setBook={setBook} onClose={onClose} />
         ) : (
           <div className="lg:px-48 md:px-24 pt-24">
             <ScanComponent setBook={setBook} onCameraClick={onCameraClick} />

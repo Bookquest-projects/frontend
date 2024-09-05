@@ -23,7 +23,7 @@ export const DefaultLayout = ({
 
     <footer className="w-full flex flex-col p-4 items-center justify-center">
       <div className="flex items-center justify-center">
-        <p className="text-default-400">
+        <p className="text-small text-default-400">
           Copyright © 2024. All rights reserved.
         </p>
       </div>
