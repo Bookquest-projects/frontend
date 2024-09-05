@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Card, CardBody, Image, Tooltip } from '@nextui-org/react';
 import { useNavigate } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
 
 import { Book, getIsbn } from '@/pages/search/models/Book.ts';
 import { Rating } from '@/shared/Rating.tsx';
@@ -14,13 +15,17 @@ interface Props {
 export const BookItem: FC<Props> = ({ book }) => {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
+  const queryClient = useQueryClient();
 
   return (
     <Card
       isHoverable
       isPressable
       className="flex w-[230px] p-4"
-      onPress={() => navigate(`/book/${getIsbn(book)}`)}
+      onPress={() => {
+        navigate(`/book/${getIsbn(book)}`);
+        queryClient.clear();
+      }}
     >
       <Tooltip content="Login to add to favorites">
         <div className="absolute top-0 right-0 z-10 p-1" />
