@@ -170,17 +170,29 @@ export const BookCard: FC<Props> = ({ book, actions = true }) => {
                     key="reading"
                     onPress={() => handleAddToBookshelf('reading')}
                   >
-                    Reading
+                    Ongoing
+                  </DropdownItem>
+                  <DropdownItem
+                    key="to-be-read"
+                    onPress={() => handleAddToBookshelf('to_be_read')}
+                  >
+                    To be read
+                  </DropdownItem>
+                  <DropdownItem
+                    key="read"
+                    onPress={() => handleAddToBookshelf('read')}
+                  >
+                    Finished
                   </DropdownItem>
                   <DropdownItem
                     key="unfinished"
-                    onPress={() => handleAddToBookshelf('unfinished')}
+                    onPress={() => handleAddToBookshelf('not_finished')}
                   >
                     Unfinished
                   </DropdownItem>
                   <DropdownItem
                     key="unwanted"
-                    onPress={() => handleAddToBookshelf('unwanted')}
+                    onPress={() => handleAddToBookshelf('no_way')}
                   >
                     Unwanted
                   </DropdownItem>
