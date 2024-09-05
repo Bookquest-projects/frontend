@@ -3,7 +3,6 @@ import {
   FC,
   ReactNode,
   useContext,
-  useEffect,
   useMemo,
   useState,
 } from 'react';
@@ -42,17 +41,6 @@ const AuthProvider: FC<Props> = ({ children }) => {
     () => ({ isAuthenticated, login, logout }),
     [isAuthenticated]
   );
-
-  useEffect(() => {
-    if (
-      getCookie('access_token_cookie') === null &&
-      getCookie('access_token_cookie') === ''
-    ) {
-      setIsAuthenticated(false);
-    } else {
-      setIsAuthenticated(true);
-    }
-  }, [getCookie('access_token_cookie')]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
