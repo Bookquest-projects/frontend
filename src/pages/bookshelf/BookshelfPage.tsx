@@ -16,6 +16,12 @@ export const BookshelfPage = () => {
   } = useBookshelfQuery('reading');
 
   const {
+    data: booksTobeRead,
+    isLoading: isLoadingToBeRead,
+    isError: isErrorToBeRead,
+  } = useBookshelfQuery('to_be_read');
+
+  const {
     data: booksOwned,
     isLoading: isLoadingOwned,
     isError: isErrorOwned,
@@ -25,13 +31,13 @@ export const BookshelfPage = () => {
     data: booksUnfinished,
     isLoading: isLoadingUnfinished,
     isError: isErrorUnfinished,
-  } = useBookshelfQuery('unfinished');
+  } = useBookshelfQuery('not_finished');
 
   const {
     data: booksUnwanted,
     isLoading: isLoadingUnwanted,
     isError: isErrorUnwanted,
-  } = useBookshelfQuery('unwanted');
+  } = useBookshelfQuery('no_way');
 
   const {
     data: booksFavorite,
@@ -43,10 +49,8 @@ export const BookshelfPage = () => {
     data: booksFinished,
     isLoading: isLoadingFinished,
     isError: isErrorFinished,
-  } = useBookshelfQuery('finished');
+  } = useBookshelfQuery('read');
 
-  // TODO owned, favorite, finished, reading, unfinished
-  // owned, favorite, read, reading, unwanted, not finished
   return (
     <DefaultLayout>
       {isAuthenticated ? (
@@ -83,7 +87,8 @@ export const BookshelfPage = () => {
                   </div>
                 )}
               </Tab>
-              <Tab key="reading" title="To be read">
+
+              <Tab key="reading" title="Ongoing">
                 {isLoading ? (
                   <BookSkeletons isPending={isLoading} />
                 ) : (
@@ -98,7 +103,22 @@ export const BookshelfPage = () => {
                   </div>
                 )}
               </Tab>
-              <Tab key="finished" title="Finished">
+              <Tab key="to_be_read" title="To be read">
+                {isLoadingToBeRead ? (
+                  <BookSkeletons isPending={isLoadingToBeRead} />
+                ) : (
+                  <div>
+                    {isErrorToBeRead ? (
+                      <div className="text-danger text-small">
+                        Could not load books
+                      </div>
+                    ) : (
+                      <BooksComponent books={booksTobeRead || []} />
+                    )}
+                  </div>
+                )}
+              </Tab>
+              <Tab key="read" title="Finished">
                 {isLoadingFinished ? (
                   <BookSkeletons isPending={isLoadingFinished} />
                 ) : (
@@ -128,7 +148,7 @@ export const BookshelfPage = () => {
                   </div>
                 )}
               </Tab>
-              <Tab key="unwanted" title="Unwanted">
+              <Tab key="no-way" title="Unwanted">
                 {isLoadingUnwanted ? (
                   <BookSkeletons isPending={isLoadingUnwanted} />
                 ) : (
