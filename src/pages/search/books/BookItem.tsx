@@ -1,13 +1,10 @@
 import { FC } from 'react';
 import { Card, CardBody, Image, Tooltip } from '@nextui-org/react';
-import { Heart } from 'lucide-react';
-import { Button } from '@nextui-org/button';
 import { useNavigate } from 'react-router-dom';
 
 import { Book, getIsbn } from '@/pages/search/models/Book.ts';
 import { Rating } from '@/shared/Rating.tsx';
 import { BookCard } from '@/pages/search/books/BookCard.tsx';
-import { useAddToFavoritesMutation } from '@/pages/search/books/queries/BooksQueryHooks.ts';
 import { useAuth } from '@/auth/AuthProvider.tsx';
 
 interface Props {
@@ -15,10 +12,6 @@ interface Props {
 }
 
 export const BookItem: FC<Props> = ({ book }) => {
-  const { mutate: addToFavorites } = useAddToFavoritesMutation();
-  const handleAddToFavorites = () => {
-    addToFavorites(getIsbn(book));
-  };
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
 
@@ -30,17 +23,7 @@ export const BookItem: FC<Props> = ({ book }) => {
       onPress={() => navigate(`/book/${getIsbn(book)}`)}
     >
       <Tooltip content="Login to add to favorites">
-        <div className="absolute top-0 right-0 z-10 p-1">
-          <Button
-            isIconOnly
-            className="bg-pink-500"
-            isDisabled={!isAuthenticated}
-            size="sm"
-            onPress={handleAddToFavorites}
-          >
-            <Heart />
-          </Button>
-        </div>
+        <div className="absolute top-0 right-0 z-10 p-1" />
       </Tooltip>
       <Tooltip
         className="max-w-sm"

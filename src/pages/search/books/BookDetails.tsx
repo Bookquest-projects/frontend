@@ -11,10 +11,10 @@ interface Props {
 export const BookDetails: FC<Props> = ({ book }) => (
   <div className="col-span-2">
     <div className="grid md:grid-cols-4 md:pb-8 gap-8">
-      <div className="flex flex-grow">
+      <div className="flex flex-col flex-grow justify-end">
         <Image
           alt={book.title}
-          className="flex justify-start max-h-[264px]"
+          className="flex"
           fallbackSrc="https://placehold.co/150x200?text=No+Image"
           radius="lg"
           removeWrapper={true}

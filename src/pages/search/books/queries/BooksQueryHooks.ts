@@ -67,10 +67,10 @@ export const useScanMutation = () => {
   });
 };
 
-export const useReviewsQuery = (isbn: string) => {
-  return useQuery<Review[], AxiosError>({
-    queryKey: BooksQueryKeys.reviews(isbn),
-    queryFn: () => BooksApi.getReviews(isbn),
+export const useReviewQuery = (isbn: string) => {
+  return useQuery<Review, AxiosError>({
+    queryKey: BooksQueryKeys.reviews(),
+    queryFn: () => BooksApi.getReview(isbn),
   });
 };
 
@@ -90,12 +90,40 @@ export const useAddToFavoritesMutation = () => {
       await queryClient.invalidateQueries({
         queryKey: BooksQueryKeys.books(),
       });
+      await queryClient.invalidateQueries({
+        queryKey: BooksQueryKeys.reviews(),
+      });
+
       toast.success('Added to favorites', {
         position: 'top-right',
       });
     },
     onError: () => {
       toast.error('Failed to add to favorites', {
+        position: 'top-right',
+      });
+    },
+  });
+};
+
+export const useAddToOwnedMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation<void, AxiosError, string>({
+    mutationFn: (isbn: string) => BooksApi.addToOwned(isbn),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: BooksQueryKeys.books(),
+      });
+      await queryClient.invalidateQueries({
+        queryKey: BooksQueryKeys.reviews(),
+      });
+      toast.success('Added to owned books', {
+        position: 'top-right',
+      });
+    },
+    onError: () => {
+      toast.error('Failed to add to owned books', {
         position: 'top-right',
       });
     },

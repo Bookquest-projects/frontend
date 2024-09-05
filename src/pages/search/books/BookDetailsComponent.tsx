@@ -4,13 +4,11 @@ import { Tab, Tabs } from '@nextui-org/react';
 import { Book, getIsbn } from '@/pages/search/models/Book.ts';
 import { header } from '@/components/primitives.ts';
 import { BookDetails } from '@/pages/search/books/BookDetails.tsx';
-import { ReviewsCard } from '@/pages/search/books/ReviewsCard.tsx';
 import { BooksComponent } from '@/pages/search/books/BooksComponent.tsx';
 import {
   useBookByAuthorQuery,
   useBookBySeriesQuery,
   useBookRecommendationsQuery,
-  useReviewsQuery,
 } from '@/pages/search/books/queries/BooksQueryHooks.ts';
 import { BookSkeletons } from '@/pages/search/books/BookSkeletons.tsx';
 
@@ -19,8 +17,6 @@ interface Props {
 }
 
 export const BookDetailsComponent: FC<Props> = ({ book }) => {
-  const { data: reviews } = useReviewsQuery(getIsbn(book));
-
   const {
     data: authorBooks,
     isError: isAuthorBooksError,
@@ -49,11 +45,6 @@ export const BookDetailsComponent: FC<Props> = ({ book }) => {
       </div>
       <div className="grid lg:grid-cols-3 gap-8">
         <BookDetails book={book} />
-        <div className="flex flex-col gap-4">
-          {reviews && reviews.length > 0 ? (
-            <ReviewsCard reviews={reviews} />
-          ) : null}
-        </div>
       </div>
       <div className="flex w-full flex-col gap-8">
         <Tabs>

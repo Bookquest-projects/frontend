@@ -1,5 +1,5 @@
 import { Button } from '@nextui-org/button';
-import { ChevronDown, HeartIcon } from 'lucide-react';
+import { BookmarkIcon, ChevronDown, HeartIcon } from 'lucide-react';
 import {
   Chip,
   Dropdown,
@@ -16,6 +16,8 @@ import { Book, getIsbn } from '@/pages/search/models/Book.ts';
 import {
   useAddToBookshelfMutation,
   useAddToFavoritesMutation,
+  useAddToOwnedMutation,
+  useReviewQuery,
 } from '@/pages/search/books/queries/BooksQueryHooks.ts';
 import { useAuth } from '@/auth/AuthProvider.tsx';
 
@@ -26,13 +28,21 @@ interface Props {
 
 export const BookCard: FC<Props> = ({ book, actions = true }) => {
   const { isAuthenticated } = useAuth();
-  const { mutate: addToFavorites } = useAddToFavoritesMutation();
+  const { mutate: addToFavorites, isSuccess: isSuccessFavorites } =
+    useAddToFavoritesMutation();
+  const { mutate: addToOwned, isSuccess: isSuccessOwned } =
+    useAddToOwnedMutation();
   const { mutate: addToBookshelf } = useAddToBookshelfMutation();
+  const { data: review } = useReviewQuery(getIsbn(book));
 
   const [showMore, setShowMore] = useState(false);
   const handleAddToFavorites = () => {
     addToFavorites(getIsbn(book));
   };
+  const handleAddToOwned = () => {
+    addToOwned(getIsbn(book));
+  };
+
   const handleAddToBookshelf = (name: string) => {
     addToBookshelf({ isbn: getIsbn(book), name });
   };
@@ -101,26 +111,51 @@ export const BookCard: FC<Props> = ({ book, actions = true }) => {
             <div className={clsx('cursor-pointer')}>
               <Button
                 isIconOnly
-                className="bg-pink-500"
+                className={
+                  isSuccessFavorites || (review && review.favorite)
+                    ? 'text-[#FF69B4] fill-[#FF69B4]'
+                    : 'text-default-500 fill-default-500'
+                }
                 isDisabled={!isAuthenticated}
+                variant="faded"
                 onPress={handleAddToFavorites}
               >
-                <HeartIcon />
+                <HeartIcon fill="" />
               </Button>
             </div>
           </Tooltip>
-
+          <Tooltip
+            content="Login to add to owned books"
+            hidden={isAuthenticated}
+          >
+            <div className={clsx('cursor-pointer')}>
+              <Button
+                isIconOnly
+                className={
+                  isSuccessOwned || (review && review.owned)
+                    ? 'text-secondary fill-secondary'
+                    : 'text-default-500 fill-default-500'
+                }
+                isDisabled={!isAuthenticated}
+                variant="faded"
+                onPress={handleAddToOwned}
+              >
+                <BookmarkIcon fill="" />
+              </Button>
+            </div>
+          </Tooltip>
           <Tooltip content="Login to add to bookshelf" hidden={isAuthenticated}>
             <div className={clsx('cursor-pointer')}>
               <Dropdown isDisabled={!isAuthenticated}>
                 <DropdownTrigger>
                   <Button
-                    color="primary"
+                    color="warning"
                     endContent={
                       <div>
                         <ChevronDown />
                       </div>
                     }
+                    variant="flat"
                   >
                     Add to bookshelf
                   </Button>
