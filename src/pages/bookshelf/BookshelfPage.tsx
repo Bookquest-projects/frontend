@@ -4,8 +4,8 @@ import { DefaultLayout } from '@/layouts/default.tsx';
 import { BooksComponent } from '@/pages/search/books/BooksComponent.tsx';
 import { useAuth } from '@/auth/AuthProvider.tsx';
 import { useBookshelfQuery } from '@/pages/search/books/queries/BooksQueryHooks.ts';
-import { BookshelfPageLogin } from '@/pages/bookshelf/BookshelfPageLogin.tsx';
 import { BookSkeletons } from '@/pages/search/books/BookSkeletons.tsx';
+import { BookshelfPageLogin } from '@/pages/bookshelf/BookshelfPageLogin.tsx';
 
 export const BookshelfPage = () => {
   const { isAuthenticated } = useAuth();
@@ -33,12 +33,26 @@ export const BookshelfPage = () => {
     isError: isErrorUnwanted,
   } = useBookshelfQuery('unwanted');
 
+  const {
+    data: booksFavorite,
+    isLoading: isLoadingFavorite,
+    isError: isErrorFavorite,
+  } = useBookshelfQuery('favorite');
+
+  const {
+    data: booksFinished,
+    isLoading: isLoadingFinished,
+    isError: isErrorFinished,
+  } = useBookshelfQuery('finished');
+
+  // TODO owned, favorite, finished, reading, unfinished
+  // owned, favorite, read, reading, unwanted, not finished
   return (
     <DefaultLayout>
       {isAuthenticated ? (
         <section className="flex py-8">
-          <div className="flex flex-col gap-8">
-            <Tabs color="primary" size="lg">
+          <div className="flex w-full flex-col gap-8">
+            <Tabs color="primary" size="md">
               <Tab key="owned" title="Owned">
                 {isLoadingOwned ? (
                   <BookSkeletons isPending={isLoadingOwned} />
@@ -54,7 +68,22 @@ export const BookshelfPage = () => {
                   </div>
                 )}
               </Tab>
-              <Tab key="reading" title="Reading">
+              <Tab key="favorite" title="Favorite">
+                {isLoadingFavorite ? (
+                  <BookSkeletons isPending={isLoadingFavorite} />
+                ) : (
+                  <div>
+                    {isErrorFavorite ? (
+                      <div className="text-danger text-small">
+                        Could not load books
+                      </div>
+                    ) : (
+                      <BooksComponent books={booksFavorite || []} />
+                    )}
+                  </div>
+                )}
+              </Tab>
+              <Tab key="reading" title="To be read">
                 {isLoading ? (
                   <BookSkeletons isPending={isLoading} />
                 ) : (
@@ -65,6 +94,21 @@ export const BookshelfPage = () => {
                       </div>
                     ) : (
                       <BooksComponent books={booksReading || []} />
+                    )}
+                  </div>
+                )}
+              </Tab>
+              <Tab key="finished" title="Finished">
+                {isLoadingFinished ? (
+                  <BookSkeletons isPending={isLoadingFinished} />
+                ) : (
+                  <div>
+                    {isErrorFinished ? (
+                      <div className="text-danger text-small">
+                        Could not load books
+                      </div>
+                    ) : (
+                      <BooksComponent books={booksFinished || []} />
                     )}
                   </div>
                 )}

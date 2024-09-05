@@ -54,9 +54,11 @@ export const ScanComponent: FC<Props> = ({ onCameraClick, setBook }) => {
               </button>
             </div>
           }
+          isClearable={false}
           label="Scan"
+          labelPlacement="outside"
           name="q"
-          placeholder="ISBN, title or author"
+          placeholder="ISBN"
           type="search"
           value={value}
           onClick={() => setOpenUpload(false)}

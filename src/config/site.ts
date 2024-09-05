@@ -4,23 +4,21 @@ export const siteConfig = {
   name: 'Bookquest',
   navMenuItems: [
     {
-      label: 'Profile',
-      href: '/profile',
+      label: 'Home',
+      href: '/',
     },
     {
       label: 'Search',
       href: '/search',
     },
-    {
-      label: 'Projects',
-      href: '/projects',
-    },
+  ],
+  links: {
+    github: 'https://github.com/Bookquest-projects',
+  },
+  authNavMenuItems: [
     {
       label: 'Bookshelf',
       href: '/bookshelf',
     },
   ],
-  links: {
-    github: 'https://github.com/Bookquest-projects',
-  },
 };

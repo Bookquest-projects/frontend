@@ -57,15 +57,8 @@ export const useBookBySeriesQuery = (isbn: string) => {
 };
 
 export const useScanMutation = () => {
-  const queryClient = useQueryClient();
-
   return useMutation<Book, AxiosError, FormData>({
     mutationFn: (formData) => BooksApi.postScan(formData),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: BooksQueryKeys.books(),
-      });
-    },
     onError: () => {
       toast.error('Failed to scan book', {
         position: 'top-right',
@@ -74,10 +67,10 @@ export const useScanMutation = () => {
   });
 };
 
-export const useReviewsQuery = (isbn: string) => {
-  return useQuery<Review[], AxiosError>({
-    queryKey: BooksQueryKeys.reviews(isbn),
-    queryFn: () => BooksApi.getReviews(isbn),
+export const useReviewQuery = (isbn: string) => {
+  return useQuery<Review, AxiosError>({
+    queryKey: BooksQueryKeys.reviews(),
+    queryFn: () => BooksApi.getReview(isbn),
   });
 };
 
@@ -97,6 +90,10 @@ export const useAddToFavoritesMutation = () => {
       await queryClient.invalidateQueries({
         queryKey: BooksQueryKeys.books(),
       });
+      await queryClient.invalidateQueries({
+        queryKey: BooksQueryKeys.reviews(),
+      });
+
       toast.success('Added to favorites', {
         position: 'top-right',
       });
@@ -117,6 +114,9 @@ export const useAddToOwnedMutation = () => {
     onSuccess: async () => {
       await queryClient.invalidateQueries({
         queryKey: BooksQueryKeys.books(),
+      });
+      await queryClient.invalidateQueries({
+        queryKey: BooksQueryKeys.reviews(),
       });
       toast.success('Added to owned books', {
         position: 'top-right',

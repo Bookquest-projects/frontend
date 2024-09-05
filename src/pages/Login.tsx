@@ -1,18 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
 import { useAuth } from '@/auth/AuthProvider.tsx';
 import { useLoginMutation } from '@/auth/queries/AuthQueryHooks.ts';
 import { Form } from '@/pages/Form.tsx';
 
 export const Login = () => {
-  const { isAuthenticated, login } = useAuth();
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate('/');
-    }
-  }, []);
+  const { login } = useAuth();
 
   const { mutate, isPending } = useLoginMutation();
   const navigate = useNavigate();
@@ -25,7 +18,8 @@ export const Login = () => {
       {
         onSuccess: () => {
           login();
-          navigate('/');
+          localStorage.setItem('username', usernameValue);
+          navigate('/search');
         },
       }
     );
@@ -33,8 +27,10 @@ export const Login = () => {
 
   return (
     <Form
+      color="secondary"
       isPending={isPending}
       link="/sign-up"
+      linkColor="primary"
       linkText="Sign up"
       submit={submit}
       text="Need to create an account?"

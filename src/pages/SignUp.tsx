@@ -19,7 +19,7 @@ export const SignUp = () => {
       {
         onSuccess: () => {
           login();
-          navigate('/');
+          navigate('/search');
         },
       }
     );
@@ -27,8 +27,11 @@ export const SignUp = () => {
 
   return (
     <Form
+      color="primary"
       isPending={isPending}
+      isSignup={true}
       link="/login"
+      linkColor="secondary"
       linkText="Login"
       submit={submit}
       text="Already have an account?"

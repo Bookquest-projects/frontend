@@ -79,9 +79,9 @@ const getBooksBySeries = (isbn: string): Promise<Book[]> =>
       throw error;
     });
 
-const getReviews = (isbn: string): Promise<Review[]> =>
+const getReviews = (isbn: string): Promise<Review> =>
   baseAxios
-    .get<Review[]>(`${REVIEW_API}/${isbn}`, {
+    .get<Review>(`${REVIEW_API}/${isbn}`, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -166,7 +166,7 @@ const BooksApi = {
   getBookRecommendations,
   getBookByAuthor,
   getBooksBySeries,
-  getReviews,
+  getReview: getReviews,
   getBookshelf,
   addToBookshelf,
   addToFavorites,

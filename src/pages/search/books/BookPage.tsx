@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { CircularProgress } from '@nextui-org/react';
 
 import { BookDetailsComponent } from '@/pages/search/books/BookDetailsComponent.tsx';
 import { useBookQuery } from '@/pages/search/books/queries/BooksQueryHooks.ts';
@@ -13,7 +14,9 @@ export const BookPage = () => {
     <DefaultLayout>
       <div className="flex flex-col gap-4">
         {isPending ? (
-          <div>Loading...</div>
+          <div className="flex py-24 flex-grow justify-center items-center">
+            <CircularProgress aria-label="Loading..." />
+          </div>
         ) : isError ? (
           <div>Error loading book</div>
         ) : book ? (

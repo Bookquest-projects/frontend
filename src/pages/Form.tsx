@@ -15,6 +15,9 @@ interface Props {
   // eslint-disable-next-line no-unused-vars
   submit: (usernameValue: string, passwordValue: string) => void;
   isPending?: boolean;
+  color?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
+  linkColor: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
+  isSignup?: boolean;
 }
 
 export const Form: FC<Props> = ({
@@ -24,14 +27,24 @@ export const Form: FC<Props> = ({
   text,
   submit,
   isPending,
+  color,
+  linkColor,
+  isSignup = false,
 }) => {
   const [usernameValue, setUsernameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
+  const [confirmPasswordValue, setConfirmPasswordValue] = useState('');
+
   const [isNameInvalid, setIsNameInvalid] = useState(false);
   const [isPasswordInvalid, setIsPasswordInvalid] = useState(false);
+  const [isConfirmPasswordInvalid, setIsConfirmPasswordInvalid] =
+    useState(false);
+
   const [isVisible, setIsVisible] = useState(false);
+  const [isConfirmVisible, setIsConfirmVisible] = useState(false);
 
   const toggleVisibility = () => setIsVisible(!isVisible);
+  const toggleConfirmVisibility = () => setIsConfirmVisible(!isConfirmVisible);
 
   const validateUsername = (value: string) =>
     value.match(/^[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]{3,45}$/);
@@ -39,11 +52,29 @@ export const Form: FC<Props> = ({
   const validatePassword = (value: string) =>
     value.match(/^[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]{8,45}$/);
 
+  const passwordErrorMessage = () => {
+    let msg1 = '';
+    let msg2 = '';
+
+    if (passwordValue.match(/^.{0,7}$|^.{46,}$/))
+      msg1 += 'must be between 8 and 45 characters';
+    if (!passwordValue.match(/^[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]*$/))
+      msg2 += 'only alphanumeric and characters !@#$%^&*(),.?":{}|<>';
+
+    return (
+      <>
+        {msg1}
+        {msg2 !== '' ? <br /> : null}
+        {msg2}
+      </>
+    );
+  };
+
   return (
     <DefaultLayout>
       <section className="flex justify-center py-16">
         <div className="flex flex-col">
-          <Card className="max-w-full w-[400px] px-4">
+          <Card className="max-w-full sm:w-[400px] px-4">
             <CardBody className="overflow-hidden">
               <CardHeader className="flex justify-center font-semibold text-default-700">
                 {title}
@@ -102,28 +133,7 @@ export const Form: FC<Props> = ({
                         )}
                       </button>
                     }
-                    errorMessage={() => {
-                      let msg1 = '';
-                      let msg2 = '';
-
-                      if (passwordValue.match(/^.{0,7}$|^.{46,}$/))
-                        msg1 += 'must be between 8 and 45 characters';
-                      if (
-                        !passwordValue.match(
-                          /^[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]*$/
-                        )
-                      )
-                        msg2 +=
-                          'only alphanumeric and characters !@#$%^&*(),.?":{}|<>';
-
-                      return (
-                        <>
-                          {msg1}
-                          {msg2 !== '' ? <br /> : null}
-                          {msg2}
-                        </>
-                      );
-                    }}
+                    errorMessage={passwordErrorMessage}
                     isInvalid={isPasswordInvalid}
                     label="Password"
                     placeholder="Enter your password"
@@ -132,11 +142,44 @@ export const Form: FC<Props> = ({
                     onValueChange={(value) => {
                       setPasswordValue(value);
                       setIsPasswordInvalid(validatePassword(value) === null);
+                      setIsConfirmPasswordInvalid(
+                        confirmPasswordValue !== value
+                      );
                     }}
                   />
+                  {isSignup ? (
+                    <Input
+                      isRequired
+                      color={isConfirmPasswordInvalid ? 'danger' : 'default'}
+                      endContent={
+                        <button
+                          aria-label="toggle password visibility"
+                          className="focus:outline-none"
+                          type="button"
+                          onClick={toggleConfirmVisibility}
+                        >
+                          {isConfirmVisible ? (
+                            <EyeOff className="text-2xl text-default-400 pointer-events-none" />
+                          ) : (
+                            <Eye className="text-2xl text-default-400 pointer-events-none" />
+                          )}
+                        </button>
+                      }
+                      errorMessage="Password does not match"
+                      isInvalid={isConfirmPasswordInvalid}
+                      label="Password"
+                      placeholder="Confirm your password"
+                      type={isVisible ? 'text' : 'password'}
+                      value={confirmPasswordValue}
+                      onValueChange={(value) => {
+                        setConfirmPasswordValue(value);
+                        setIsConfirmPasswordInvalid(value !== passwordValue);
+                      }}
+                    />
+                  ) : null}
                   <p className="text-center text-small">
                     {text}{' '}
-                    <Link href={link} size="sm">
+                    <Link color={linkColor} href={link} size="sm">
                       {linkText}
                     </Link>
                   </p>
@@ -144,10 +187,11 @@ export const Form: FC<Props> = ({
                 <div className="flex gap-2 justify-end">
                   <Button
                     fullWidth
-                    color="primary"
+                    color={color}
                     isDisabled={
                       isNameInvalid ||
                       isPasswordInvalid ||
+                      (isSignup && isConfirmPasswordInvalid) ||
                       usernameValue === '' ||
                       passwordValue === ''
                     }
