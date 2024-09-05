@@ -93,10 +93,6 @@ export const useAddToFavoritesMutation = () => {
       await queryClient.invalidateQueries({
         queryKey: BooksQueryKeys.reviews(),
       });
-
-      toast.success('Added to favorites', {
-        position: 'top-right',
-      });
     },
     onError: () => {
       toast.error('Failed to add to favorites', {
@@ -117,9 +113,6 @@ export const useAddToOwnedMutation = () => {
       });
       await queryClient.invalidateQueries({
         queryKey: BooksQueryKeys.reviews(),
-      });
-      toast.success('Added to owned books', {
-        position: 'top-right',
       });
     },
     onError: () => {

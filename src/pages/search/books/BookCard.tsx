@@ -28,10 +28,8 @@ interface Props {
 
 export const BookCard: FC<Props> = ({ book, actions = true }) => {
   const { isAuthenticated } = useAuth();
-  const { mutate: addToFavorites, isSuccess: isSuccessFavorites } =
-    useAddToFavoritesMutation();
-  const { mutate: addToOwned, isSuccess: isSuccessOwned } =
-    useAddToOwnedMutation();
+  const { mutate: addToFavorites } = useAddToFavoritesMutation();
+  const { mutate: addToOwned } = useAddToOwnedMutation();
   const { mutate: addToBookshelf } = useAddToBookshelfMutation();
   const { data: review } = useReviewQuery(getIsbn(book));
 
@@ -39,6 +37,7 @@ export const BookCard: FC<Props> = ({ book, actions = true }) => {
   const handleAddToFavorites = () => {
     addToFavorites(getIsbn(book));
   };
+
   const handleAddToOwned = () => {
     addToOwned(getIsbn(book));
   };
@@ -112,7 +111,7 @@ export const BookCard: FC<Props> = ({ book, actions = true }) => {
               <Button
                 isIconOnly
                 className={
-                  isSuccessFavorites || (review && review.favorite)
+                  review && review.favorite
                     ? 'text-[#FF69B4] fill-[#FF69B4]'
                     : 'text-default-500 fill-default-500'
                 }
@@ -132,7 +131,7 @@ export const BookCard: FC<Props> = ({ book, actions = true }) => {
               <Button
                 isIconOnly
                 className={
-                  isSuccessOwned || (review && review.owned)
+                  review && review.owned
                     ? 'text-secondary fill-secondary'
                     : 'text-default-500 fill-default-500'
                 }
