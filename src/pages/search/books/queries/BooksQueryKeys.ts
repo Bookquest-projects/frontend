@@ -7,7 +7,7 @@ const BooksQueryKeys = {
     ['book-by-author', author, language] as const,
   booksBySeries: (isbn?: string) => ['books-by-series', isbn] as const,
   reviews: () => ['reviews'] as const,
-  bookshelf: (name?: string) => ['bookshelf', name] as const,
+  bookshelf: () => ['bookshelf'] as const,
 };
 
 export default BooksQueryKeys;
