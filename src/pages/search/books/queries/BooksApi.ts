@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { Book } from '@/pages/search/models/Book.ts';
+import { Book, Bookshelf } from '@/pages/search/models/Book.ts';
 import { Review } from '@/pages/search/models/Reviews.ts';
 import { getCookie } from '@/shared/cookies.ts';
 
@@ -91,14 +91,11 @@ const getReviews = (isbn: string): Promise<Review> =>
       throw error;
     });
 
-const getBookshelf = (name: string): Promise<Book[]> =>
+const getBookshelf = (): Promise<Bookshelf> =>
   baseAxios
-    .get<Book[]>(`${BOOKSHELF_API}`, {
+    .get<Bookshelf>(`${BOOKSHELF_API}`, {
       headers: {
         'Content-Type': 'application/json',
-      },
-      params: {
-        name: name,
       },
     })
     .then((response) => response.data)

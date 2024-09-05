@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import BooksApi from './BooksApi.ts';
 import BooksQueryKeys from './BooksQueryKeys.ts';
 
-import { Book } from '@/pages/search/models/Book.ts';
+import { Book, Bookshelf } from '@/pages/search/models/Book.ts';
 import { Review } from '@/pages/search/models/Reviews.ts';
 
 export const useBookMutation = () => {
@@ -74,10 +74,10 @@ export const useReviewQuery = (isbn: string) => {
   });
 };
 
-export const useBookshelfQuery = (name: string) => {
-  return useQuery<Book[], AxiosError>({
-    queryKey: BooksQueryKeys.bookshelf(name),
-    queryFn: () => BooksApi.getBookshelf(name),
+export const useBookshelfQuery = () => {
+  return useQuery<Bookshelf, AxiosError>({
+    queryKey: BooksQueryKeys.bookshelf(),
+    queryFn: () => BooksApi.getBookshelf(),
   });
 };
 

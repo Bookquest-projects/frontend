@@ -9,47 +9,7 @@ import { BookshelfPageLogin } from '@/pages/bookshelf/BookshelfPageLogin.tsx';
 
 export const BookshelfPage = () => {
   const { isAuthenticated } = useAuth();
-  const {
-    data: booksReading,
-    isLoading: isLoading,
-    isError: isError,
-  } = useBookshelfQuery('reading');
-
-  const {
-    data: booksTobeRead,
-    isLoading: isLoadingToBeRead,
-    isError: isErrorToBeRead,
-  } = useBookshelfQuery('to_be_read');
-
-  const {
-    data: booksOwned,
-    isLoading: isLoadingOwned,
-    isError: isErrorOwned,
-  } = useBookshelfQuery('owned');
-
-  const {
-    data: booksUnfinished,
-    isLoading: isLoadingUnfinished,
-    isError: isErrorUnfinished,
-  } = useBookshelfQuery('not_finished');
-
-  const {
-    data: booksUnwanted,
-    isLoading: isLoadingUnwanted,
-    isError: isErrorUnwanted,
-  } = useBookshelfQuery('no_way');
-
-  const {
-    data: booksFavorite,
-    isLoading: isLoadingFavorite,
-    isError: isErrorFavorite,
-  } = useBookshelfQuery('favorite');
-
-  const {
-    data: booksFinished,
-    isLoading: isLoadingFinished,
-    isError: isErrorFinished,
-  } = useBookshelfQuery('read');
+  const { data: books, isLoading, isError } = useBookshelfQuery();
 
   return (
     <DefaultLayout>
@@ -58,31 +18,31 @@ export const BookshelfPage = () => {
           <div className="flex w-full flex-col gap-8">
             <Tabs color="primary" size="md">
               <Tab key="owned" title="Owned">
-                {isLoadingOwned ? (
-                  <BookSkeletons isPending={isLoadingOwned} />
+                {isLoading ? (
+                  <BookSkeletons isPending={isLoading} />
                 ) : (
                   <div>
-                    {isErrorOwned ? (
+                    {isError ? (
                       <div className="text-danger text-small">
                         Could not load books
                       </div>
                     ) : (
-                      <BooksComponent books={booksOwned || []} />
+                      <BooksComponent books={books?.owned || []} />
                     )}
                   </div>
                 )}
               </Tab>
               <Tab key="favorite" title="Favorite">
-                {isLoadingFavorite ? (
-                  <BookSkeletons isPending={isLoadingFavorite} />
+                {isLoading ? (
+                  <BookSkeletons isPending={isLoading} />
                 ) : (
                   <div>
-                    {isErrorFavorite ? (
+                    {isError ? (
                       <div className="text-danger text-small">
                         Could not load books
                       </div>
                     ) : (
-                      <BooksComponent books={booksFavorite || []} />
+                      <BooksComponent books={books?.favorite || []} />
                     )}
                   </div>
                 )}
@@ -98,67 +58,67 @@ export const BookshelfPage = () => {
                         Could not load books
                       </div>
                     ) : (
-                      <BooksComponent books={booksReading || []} />
+                      <BooksComponent books={books?.reading || []} />
                     )}
                   </div>
                 )}
               </Tab>
               <Tab key="to_be_read" title="To be read">
-                {isLoadingToBeRead ? (
-                  <BookSkeletons isPending={isLoadingToBeRead} />
+                {isLoading ? (
+                  <BookSkeletons isPending={isLoading} />
                 ) : (
                   <div>
-                    {isErrorToBeRead ? (
+                    {isError ? (
                       <div className="text-danger text-small">
                         Could not load books
                       </div>
                     ) : (
-                      <BooksComponent books={booksTobeRead || []} />
+                      <BooksComponent books={books?.to_be_read || []} />
                     )}
                   </div>
                 )}
               </Tab>
               <Tab key="read" title="Finished">
-                {isLoadingFinished ? (
-                  <BookSkeletons isPending={isLoadingFinished} />
+                {isLoading ? (
+                  <BookSkeletons isPending={isLoading} />
                 ) : (
                   <div>
-                    {isErrorFinished ? (
+                    {isError ? (
                       <div className="text-danger text-small">
                         Could not load books
                       </div>
                     ) : (
-                      <BooksComponent books={booksFinished || []} />
+                      <BooksComponent books={books?.read || []} />
                     )}
                   </div>
                 )}
               </Tab>
               <Tab key="unfinished" title="Unfinished">
-                {isLoadingUnfinished ? (
-                  <BookSkeletons isPending={isLoadingUnfinished} />
+                {isLoading ? (
+                  <BookSkeletons isPending={isLoading} />
                 ) : (
                   <div>
-                    {isErrorUnfinished ? (
+                    {isError ? (
                       <div className="text-danger text-small">
                         Could not load books
                       </div>
                     ) : (
-                      <BooksComponent books={booksUnfinished || []} />
+                      <BooksComponent books={books?.not_finished || []} />
                     )}
                   </div>
                 )}
               </Tab>
               <Tab key="no-way" title="Unwanted">
-                {isLoadingUnwanted ? (
-                  <BookSkeletons isPending={isLoadingUnwanted} />
+                {isLoading ? (
+                  <BookSkeletons isPending={isLoading} />
                 ) : (
                   <div>
-                    {isErrorUnwanted ? (
+                    {isError ? (
                       <div className="text-danger text-small">
                         Could not load books
                       </div>
                     ) : (
-                      <BooksComponent books={booksUnwanted || []} />
+                      <BooksComponent books={books?.no_way || []} />
                     )}
                   </div>
                 )}
