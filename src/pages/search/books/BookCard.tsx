@@ -1,5 +1,5 @@
 import { Button } from '@nextui-org/button';
-import { ChevronDown, HeartIcon } from 'lucide-react';
+import { BookmarkIcon, ChevronDown, HeartIcon } from 'lucide-react';
 import {
   Chip,
   Dropdown,
@@ -16,6 +16,7 @@ import { Book, getIsbn } from '@/pages/search/models/Book.ts';
 import {
   useAddToBookshelfMutation,
   useAddToFavoritesMutation,
+  useAddToOwnedMutation,
 } from '@/pages/search/books/queries/BooksQueryHooks.ts';
 import { useAuth } from '@/auth/AuthProvider.tsx';
 
@@ -26,11 +27,15 @@ interface Props {
 export const BookCard: FC<Props> = ({ book }) => {
   const { isAuthenticated } = useAuth();
   const { mutate: addToFavorites } = useAddToFavoritesMutation();
+  const { mutate: addToOwned } = useAddToOwnedMutation();
   const { mutate: addToBookshelf } = useAddToBookshelfMutation();
 
   const [showMore, setShowMore] = useState(false);
   const handleAddToFavorites = () => {
     addToFavorites(getIsbn(book));
+  };
+  const handleAddToOwned = () => {
+    addToOwned(getIsbn(book));
   };
   const handleAddToBookshelf = (name: string) => {
     addToBookshelf({ isbn: getIsbn(book), name });
@@ -104,6 +109,18 @@ export const BookCard: FC<Props> = ({ book }) => {
               onPress={handleAddToFavorites}
             >
               <HeartIcon />
+            </Button>
+          </div>
+        </Tooltip>
+        <Tooltip content="Login to add to owned books" hidden={isAuthenticated}>
+          <div className={clsx('cursor-pointer')}>
+            <Button
+              className="bg-primary-500"
+              isDisabled={!isAuthenticated}
+              onPress={handleAddToOwned}
+            >
+              <BookmarkIcon />
+              Mark as owned
             </Button>
           </div>
         </Tooltip>
