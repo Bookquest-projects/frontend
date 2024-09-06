@@ -161,12 +161,6 @@ export const BookCard: FC<Props> = ({ book, actions = true }) => {
                 </DropdownTrigger>
                 <DropdownMenu>
                   <DropdownItem
-                    key="owned"
-                    onPress={() => handleAddToBookshelf('owned')}
-                  >
-                    Owned
-                  </DropdownItem>
-                  <DropdownItem
                     key="reading"
                     onPress={() => handleAddToBookshelf('reading')}
                   >
